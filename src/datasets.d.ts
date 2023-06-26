@@ -1,3 +1,7 @@
+type SampleDataset<T, K=T> = T[] & {
+    columns: (keyof K)[]
+}
+
 declare module '@observablehq/aapi' {
     export type AapiEntry = {
         date: Date,
@@ -9,13 +13,18 @@ declare module '@observablehq/aapi' {
 }
 
 declare module '@observablehq/alphabet' {
-    export default function alphabet(): string[] & {
-        columns: [
+    export type AlphabetEntry = {
+        letter: string,
+        frequency: number,
+    }
+    export default function alphabet(): SampleDataset<
+        AlphabetEntry,
+        [
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
             'U', 'V', 'W', 'X', 'Y', 'Z'
         ]
-    }
+    >
 }
 
 declare module '@observablehq/cars' {
@@ -89,6 +98,7 @@ declare module '@observablehq/diamonds' {
     export default function(): ObservableDiamond[] & {
         columns: keyof ObservableDiamond
     }
+    export default function(): SampleDataset<ObservableDiamond>
 }
 
 declare module '@observablehq/dji' {
@@ -100,9 +110,7 @@ declare module '@observablehq/dji' {
         close: number,
         volume: number,
     }
-    export default function(): ObservableDjiEntry[] & {
-        columns: keyof ObservableDjiEntry
-    }
+    export default function(): SampleDataset<ObservableDjiEntry>
 }
 
 declare module '@observablehq/flare' {
@@ -127,22 +135,22 @@ declare module '@observablehq/iris' {
         petalWidth: number,
         species: ObservableIrisSpecies,
     }
-    export default function(): ObservableIris[] & {
-        columns: keyof ObservableIris
-    }
+    export default function(): SampleDataset<ObservableIris>
 }
 
 export module '@observablehq/miserables' {
+    export type ObservableMiserablesNode = {
+        id: string;
+        group: number;
+    }
+    export type ObservableMiserablesLink = {
+        source: string;
+        target: string;
+        value: number;
+    }
     export default function(): {
-        nodes: {
-            id: string;
-            group: number;
-        }[];
-        links: {
-            source: string;
-            target: string;
-            value: number;
-        }[];
+        nodes: ObservableMiserablesNode[];
+        links: ObservableMiserablesLink[];
     }
 }
 
@@ -161,9 +169,7 @@ declare module '@observablehq/mtcars' {
         gear: number;
         carb: number;
     }
-    export default function(): ObservableMtCar[] & {
-        columns: keyof ObservableMtCar
-    }
+    export default function(): SampleDataset<ObservableMtCar>
 }
 
 declare module '@observablehq/population' {
@@ -174,9 +180,7 @@ declare module '@observablehq/population' {
         population: number;
     }
 
-    export default function(): ObservablePopulationEntry[] & {
-        columns: keyof ObservablePopulationEntry
-    }
+    export default function(): SampleDataset<ObservablePopulationEntry>
 }
 
 declare module '@observablehq/unemployment' {
@@ -186,7 +190,5 @@ declare module '@observablehq/unemployment' {
         county: string,
         rate: number,
     }
-    export default function(): ObservableUnemploymentEntry[] & {
-        columns: keyof ObservableUnemploymentEntry
-    }
+    export default function(): SampleDataset<ObservableUnemploymentEntry>
 }
