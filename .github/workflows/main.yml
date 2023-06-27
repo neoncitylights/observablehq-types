@@ -84,7 +84,7 @@ jobs:
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build
+          folder: docs/typedocs
 
   ci-success:
     runs-on: ubuntu-latest
