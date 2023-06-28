@@ -3,11 +3,19 @@
 [![GitHub deployments](https://img.shields.io/github/deployments/neoncitylights/typed-observablehq/github-pages?label=deploy)](https://github.com/neoncitylights/typed-observablehq/deployments/activity_log?environment=github-pages)
 [![Node.js workflow](https://github.com/neoncitylights/typed-observablehq/actions/workflows/main.yml/badge.svg)](https://github.com/neoncitylights/typed-observablehq/actions/workflows/main.yml)
 
-A library which currently provides experimental TypeScript support for the following ObservableHQ libraries:
+A library which currently provides experimental TypeScript support for some ObservableHQ libraries.
 
-- `@observablehq/inspector`
-- `@observablehq/runtime`
-- `@observablehq/stdlib`
+## Support roadmap
+| Library | `.d.ts` file | Status |
+| ------- | ------------ | ------ |
+| `@observablehq/inspector`      | [`inspector.d.ts`](./src/inspector.d.ts) | ⚠️ Experimental |
+| `@observablehq/runtime`        | [`runtime.d.ts`](./src/runtime.d.ts)     | ⚠️ Experimental |
+| `@observablehq/stdlib`         | [`stdlib.d.ts`](./src/stdlib.d.ts)       | ⚠️ Experimental |
+| `@observablehq/database-proxy` | N/A | 🛠️ Todo |
+| `@observablehq/graphviz`       | N/A | 🛠️ Todo |
+| `@observablehq/htl`            | N/A | 🛠️ Todo |
+| `@observablehq/inputs`         | N/A | 🛠️ Todo |
+| `@observablehq/vega`           | N/A | 🛠️ Todo |
 
 ## Install
 > **Warning**:
