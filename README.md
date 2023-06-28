@@ -11,7 +11,7 @@ A library which currently provides experimental TypeScript support for some Obse
 | `@observablehq/inspector`      | [`inspector.d.ts`](./src/inspector.d.ts) | ⚠️ Experimental |
 | `@observablehq/runtime`        | [`runtime.d.ts`](./src/runtime.d.ts)     | ⚠️ Experimental |
 | `@observablehq/stdlib`         | [`stdlib.d.ts`](./src/stdlib.d.ts)       | ⚠️ Experimental |
-| `@observablehq/inputs`         | [`stdlib.d.ts`](./src/inputs.d.ts)       | ⚠️ Experimental |
+| `@observablehq/inputs`         | [`inputs.d.ts`](./src/inputs.d.ts)       | ⚠️ Experimental |
 | `@observablehq/database-proxy` | N/A | 🛠️ Todo |
 | `@observablehq/graphviz`       | N/A | 🛠️ Todo |
 | `@observablehq/htl`            | N/A | 🛠️ Todo |
