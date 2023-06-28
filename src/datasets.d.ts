@@ -1,22 +1,22 @@
 type SampleDataset<T, K=T> = T[] & {
     columns: (keyof K)[]
-}
+};
 
 declare module '@observablehq/aapi' {
     export type AapiEntry = {
         date: Date,
         close: number,
-    }
+    };
     export default function aapi(): AapiEntry[] & {
         columns: keyof AapiEntry
-    }
+    };
 }
 
 declare module '@observablehq/alphabet' {
     export type AlphabetEntry = {
         letter: string,
         frequency: number,
-    }
+    };
     export default function alphabet(): SampleDataset<
         AlphabetEntry,
         [
@@ -24,15 +24,14 @@ declare module '@observablehq/alphabet' {
             'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',
             'U', 'V', 'W', 'X', 'Y', 'Z'
         ]
-    >
+    >;
 }
 
 declare module '@observablehq/cars' {
     export type ObservableCarOrigin = 
         | 'USA'
         | 'Europe'
-        | 'Japan'
-        | string & {}
+        | 'Japan';
 
     export type ObservableCar = {
         Name: string,
@@ -44,10 +43,10 @@ declare module '@observablehq/cars' {
         Acceleration: number,
         Year: Date,
         Origin: ObservableCarOrigin,
-    }
+    };
     export default function cars(): ObservableCar[] & {
         columns: keyof ObservableCar
-    }
+    };
 }
 
 declare module '@observablehq/d3' {
@@ -55,34 +54,34 @@ declare module '@observablehq/d3' {
         name: string
         children?: ObservableD3Entry[]
         size?: number
-    }
-    export default function(): ObservableD3Entry
+    };
+    export default function(): ObservableD3Entry;
 }
 
 declare module '@observablehq/diamonds' {
     export type ObservableDiamondCut =
-        | "Ideal"
-        | "Premium"
-        | "Good"
-        | "Very Good"
-        | "Fair"
+        | 'Ideal'
+        | 'Premium'
+        | 'Good'
+        | 'Very Good'
+        | 'Fair';
     export type ObservableDiamondColor =
-        | "D"
-        | "E"
-        | "F"
-        | "G"
-        | "H"
-        | "I"
-        | "J"
+        | 'D'
+        | 'E'
+        | 'F'
+        | 'G'
+        | 'H'
+        | 'I'
+        | 'J';
     export type ObservableDiamondClarity =
-        | "I1"
-        | "SI2"
-        | "SI1"
-        | "VS2"
-        | "VS1"
-        | "VVS2"
-        | "VVS1"
-        | "IF"
+        | 'I1'
+        | 'SI2'
+        | 'SI1'
+        | 'VS2'
+        | 'VS1'
+        | 'VVS2'
+        | 'VVS1'
+        | 'IF';
     export type ObservableDiamond = {
         carat: number;
         cut: ObservableDiamondCut
@@ -94,11 +93,11 @@ declare module '@observablehq/diamonds' {
         x: number;
         y: number;
         z: number;
-    }
+    };
     export default function(): ObservableDiamond[] & {
         columns: keyof ObservableDiamond
-    }
-    export default function(): SampleDataset<ObservableDiamond>
+    };
+    export default function(): SampleDataset<ObservableDiamond>;
 }
 
 declare module '@observablehq/dji' {
@@ -109,8 +108,8 @@ declare module '@observablehq/dji' {
         low: number,
         close: number,
         volume: number,
-    }
-    export default function(): SampleDataset<ObservableDjiEntry>
+    };
+    export default function(): SampleDataset<ObservableDjiEntry>;
 }
 
 declare module '@observablehq/flare' {
@@ -118,40 +117,40 @@ declare module '@observablehq/flare' {
         name: string;
         children?: IndividualWithChildren[];
         size: number;
-    }
+    };
 
-    export default function(): IndividualWithChildren
+    export default function(): IndividualWithChildren;
 }
 
 declare module '@observablehq/iris' {
     export type ObservableIrisSpecies =
-        | "setosa"
-        | "versicolor"
-        | "virginica"
+        | 'setosa'
+        | 'versicolor'
+        | 'virginica';
     export type ObservableIris = {
         sepalLength: number,
         sepalWidth: number,
         petalLength: number,
         petalWidth: number,
         species: ObservableIrisSpecies,
-    }
-    export default function(): SampleDataset<ObservableIris>
+    };
+    export default function(): SampleDataset<ObservableIris>;
 }
 
 export module '@observablehq/miserables' {
     export type ObservableMiserablesNode = {
         id: string;
         group: number;
-    }
+    };
     export type ObservableMiserablesLink = {
         source: string;
         target: string;
         value: number;
-    }
+    };
     export default function(): {
         nodes: ObservableMiserablesNode[];
         links: ObservableMiserablesLink[];
-    }
+    };
 }
 
 declare module '@observablehq/mtcars' {
@@ -168,8 +167,8 @@ declare module '@observablehq/mtcars' {
         am: number;
         gear: number;
         carb: number;
-    }
-    export default function(): SampleDataset<ObservableMtCar>
+    };
+    export default function(): SampleDataset<ObservableMtCar>;
 }
 
 declare module '@observablehq/population' {
@@ -178,9 +177,9 @@ declare module '@observablehq/population' {
         state: string;
         county: string;
         population: number;
-    }
+    };
 
-    export default function(): SampleDataset<ObservablePopulationEntry>
+    export default function(): SampleDataset<ObservablePopulationEntry>;
 }
 
 declare module '@observablehq/unemployment' {
@@ -189,6 +188,6 @@ declare module '@observablehq/unemployment' {
         state: string,
         county: string,
         rate: number,
-    }
-    export default function(): SampleDataset<ObservableUnemploymentEntry>
+    };
+    export default function(): SampleDataset<ObservableUnemploymentEntry>;
 }
