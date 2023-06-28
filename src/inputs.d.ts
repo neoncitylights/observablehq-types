@@ -54,5 +54,5 @@ declare module '@observablehq/inputs/input' {
 }
 
 declare module '@observablehq/inputs/intern' {
-    export function intern<T>(value: T): T|Object;
+    export function intern<T>(value: T): T|object;
 }
