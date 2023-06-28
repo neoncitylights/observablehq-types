@@ -1,6 +1,6 @@
 declare module '@observablehq/inspector' {
 	export class Inspector {
-		constructor(node: Node);
+		constructor(node: Element);
 		pending(): void;
 		fulfilled<T>(value: T, name: string): void;
 		rejected(error: string): void;
