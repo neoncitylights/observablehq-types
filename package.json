@@ -49,7 +49,7 @@
 		"@observablehq/runtime": "^5.8.1",
 		"@observablehq/stdlib": "^5.7.6",
 		"@typescript-eslint/eslint-plugin": "5.60.0",
-		"@typescript-eslint/parser": "5.60.0",
+		"@typescript-eslint/parser": "5.60.1",
 		"@vitest/ui": "^0.30.1",
 		"eslint": "8.43.0",
 		"gh-pages": "5.0.0",
