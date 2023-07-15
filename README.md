@@ -3,7 +3,7 @@
 [![GitHub deployments](https://img.shields.io/github/deployments/wandering-app/types-ohq-d3/github-pages?label=deploy)](https://github.com/wandering-app/types-ohq-d3/deployments/activity_log?environment=github-pages)
 [![Node.js workflow](https://github.com/wandering-app/types-ohq-d3/actions/workflows/main.yml/badge.svg)](https://github.com/wandering-app/types-ohq-d3/actions/workflows/main.yml)
 
-A library which currently provides experimental TypeScript support for some ObservableHQ libraries.
+A library which currently provides experimental TypeScript support for some ObservableHQ and D3 libraries.
 
 ## Support roadmap
 | Library | `.d.ts` file | Status |
