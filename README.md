@@ -1,7 +1,7 @@
-# `neoncitylights/typed-observablehq`
+# `neoncitylights/types-ohq-d3`
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![GitHub deployments](https://img.shields.io/github/deployments/neoncitylights/typed-observablehq/github-pages?label=deploy)](https://github.com/neoncitylights/typed-observablehq/deployments/activity_log?environment=github-pages)
-[![Node.js workflow](https://github.com/neoncitylights/typed-observablehq/actions/workflows/main.yml/badge.svg)](https://github.com/neoncitylights/typed-observablehq/actions/workflows/main.yml)
+[![GitHub deployments](https://img.shields.io/github/deployments/wandering-app/types-ohq-d3/github-pages?label=deploy)](https://github.com/wandering-app/types-ohq-d3/deployments/activity_log?environment=github-pages)
+[![Node.js workflow](https://github.com/wandering-app/types-ohq-d3/actions/workflows/main.yml/badge.svg)](https://github.com/wandering-app/types-ohq-d3/actions/workflows/main.yml)
 
 A library which currently provides experimental TypeScript support for some ObservableHQ libraries.
 
@@ -22,7 +22,7 @@ A library which currently provides experimental TypeScript support for some Obse
 > This package has not been published to the NPM package registry yet. Stay tuned!
 
 ```
-npm install @neoncitylights/typed-observablehq
+npm install @neoncitylights/types-ohq-d3
 ```
 
 ## License
