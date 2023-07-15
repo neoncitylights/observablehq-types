@@ -1,7 +1,7 @@
 {
-	"name": "@neoncitylights/typed-observablehq",
+	"name": "@neoncitylights/typed-ohq-d3",
 	"version": "0.0.0",
-	"description": "Experimental, third-party TypeScript declarations for ObservableHQ libraries (intended for eventual merge into DefinitelyTyped/DefinitelyTyped) ",
+	"description": "Experimental, third-party TypeScript declarations for ObservableHQ and D3 libraries",
 	"license": "MIT",
 	"author": {
 		"name": "Samantha",
@@ -10,10 +10,10 @@
 	"keywords": [
 		"typescript"
 	],
-	"bugs": "https://github.com/neoncitylights/typed-observablehq/issues",
+	"bugs": "https://github.com/neoncitylights/types-ohq-d3/issues",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/neoncitylights/typed-observablehq.git"
+		"url": "git+https://github.com/neoncitylights/types-ohq-d3.git"
 	},
 	"funding": {
 		"type": "individual",
