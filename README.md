@@ -27,7 +27,7 @@ The **Status** column represents:
 ### D3 libraries
 | Library | `.d.ts` file | Status | Issue |
 | ------- | ------------ | ------ | ----- |
-| [d3-geo-polygon](https://www.npmjs.com/package/d3-geo-polygon)       | N/A | ⚠️ | [#22](https://github.com/wandering-app/types-ohq-d3/issues/22) |
+| [d3-geo-polygon](https://www.npmjs.com/package/d3-geo-polygon)       | [`d3-geo-polygon.d.ts`](./src/d3-geo-polygon.ts) | ⚠️ | [#22](https://github.com/wandering-app/types-ohq-d3/issues/22) |
 | [d3-geo-projection](https://www.npmjs.com/package/d3-geo-projection) | N/A | ⚠️ | [#23](https://github.com/wandering-app/types-ohq-d3/issues/23) |
 | [d3-cam16](https://www.npmjs.com/package/d3-cam16)                   | N/A | ⚠️ | [#24](https://github.com/wandering-app/types-ohq-d3/issues/24) |
 | [d3-tile](https://www.npmjs.com/package/d3-tile)                     | N/A | 🛠️ | [#26](https://github.com/wandering-app/types-ohq-d3/issues/26) |
