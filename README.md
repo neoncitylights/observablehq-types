@@ -1,4 +1,4 @@
-# `neoncitylights/types-ohq-d3`
+# types-ohq-d3
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![GitHub deployments](https://img.shields.io/github/deployments/wandering-app/types-ohq-d3/github-pages?label=deploy&style=flat-square)](https://github.com/wandering-app/types-ohq-d3/deployments/activity_log?environment=github-pages)
 [![Node.js workflow](https://img.shields.io/github/actions/workflow/status/wandering-app/types-ohq-d3/main.yml?style=flat-square&logo=github&logoColor=white&label=Node.js%20CI)]((https://github.com/wandering-app/types-ohq-d3/actions/workflows/main.yml))
