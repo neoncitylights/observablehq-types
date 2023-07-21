@@ -6,7 +6,7 @@
 This package provides TypeScript type definitions for `@observablehq/stdlib`. As these types stabilize, we intend to eventually upstream these types into DefinitelyTyped as `@types/observablehq_stdlib`. 
 
 ## Install
-> **Warning**:
+> **Warning**
 > This package has not been published to the NPM registry yet. Stay tuned!
 
 ```
