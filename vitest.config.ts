@@ -4,10 +4,10 @@ export default defineConfig({
 	test: {
 		coverage: {
 			include: [
-				'**/tests/**/*.test.ts',
+				'packages/tests/**/*.test.ts',
 			],
 			reporter: [ 'text', 'json', 'html' ],
 		},
-		environment: 'jsdom'
+		environment: 'jsdom',
 	},
 });

@@ -1,9 +1,7 @@
-import { require, resolver } from 'd3-require';
-import { KatexOptions } from 'katex';
-
 declare module '@observablehq/stdlib' {
+	import { require, resolver } from 'd3-require';
+	import { KatexOptions } from 'katex';
 	export { FileAttachment, AbstractFile } from 'fileAttachments';
-
 
 	export namespace DOM {
 		export function canvas(width: number, height: number): HTMLCanvasElement;
