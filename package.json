@@ -11,18 +11,16 @@
 	"keywords": [
 		"typescript"
 	],
-	"bugs": "https://github.com/neoncitylights/types-ohq-d3/issues",
+	"bugs": "https://github.com/wandering-app/types-ohq-d3/issues",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/neoncitylights/types-ohq-d3.git"
+		"url": "git+https://github.com/wandering-app/types-ohq-d3.git"
 	},
 	"funding": {
 		"type": "individual",
-		"url": "https://github.com/sponsors/neoncitylights"
+		"url": "https://github.com/sponsors/wandering-app"
 	},
-	"files": [
-		"src/*.d.ts"
-	],
+	"type": "module",
 	"directories": {
 		"test": "tests"
 	},
