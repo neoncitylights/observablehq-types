@@ -15,9 +15,9 @@ The **Status** column represents:
 
 | Library | `.d.ts` file | Status | Issue |
 | ------- | ------------ | ------ | ----- |
-| [@observablehq/inspector](https://www.npmjs.com/package/@observablehq/inspector)           | [`inspector.d.ts`](./src/inspector.d.ts) | ⚠️ | |
-| [@observablehq/runtime](https://www.npmjs.com/package/@observablehq/runtime)               | [`runtime.d.ts`](./src/runtime.d.ts)     | ⚠️ | |
-| [@observablehq/stdlib](https://www.npmjs.com/package/@observablehq/stdlib)                 | [`stdlib.d.ts`](./src/stdlib.d.ts)       | ⚠️ | |
+| [@observablehq/inspector](https://www.npmjs.com/package/@observablehq/inspector)           | [`inspector.d.ts`](./packages/observablehq_inspector/inspector.d.ts) | ⚠️ | |
+| [@observablehq/runtime](https://www.npmjs.com/package/@observablehq/runtime)               | [`runtime.d.ts`](./packages/observablehq_runtime/runtime.d.ts)     | ⚠️ | |
+| [@observablehq/stdlib](https://www.npmjs.com/package/@observablehq/stdlib)                 | [`stdlib.d.ts`](./packages/observablehq_stdlib/stdlib.d.ts)       | ⚠️ | |
 | [@observablehq/graphviz](https://www.npmjs.com/package/@observablehq/graphviz)             | N/A | 🛠️ | [#30](https://github.com/wandering-app/types-ohq-d3/issues/30) |
 | [@observablehq/database-proxy](https://www.npmjs.com/package/@observablehq/database-proxy) | N/A | 🛠️ | [#29](https://github.com/wandering-app/types-ohq-d3/issues/29) |
 | [@observablehq/htl](https://www.npmjs.com/package/@observablehq/htl)                       | N/A | 🛠️ | [#31](https://github.com/wandering-app/types-ohq-d3/issues/31) |
@@ -32,14 +32,6 @@ The **Status** column represents:
 | [d3-cam16](https://www.npmjs.com/package/d3-cam16)                   | N/A | ⚠️ | [#24](https://github.com/wandering-app/types-ohq-d3/issues/24) |
 | [d3-tile](https://www.npmjs.com/package/d3-tile)                     | N/A | 🛠️ | [#26](https://github.com/wandering-app/types-ohq-d3/issues/26) |
 | [d3-hcg](https://www.npmjs.com/package/d3-hcg)                       | N/A | 🛠️ | [#27](https://github.com/wandering-app/types-ohq-d3/issues/27) |
-
-## Install
-> **Warning**:
-> This package has not been published to the NPM package registry yet. Stay tuned!
-
-```
-npm install @neoncitylights/types-ohq-d3
-```
 
 ## License
 This library is licensed under the MIT license ([`LICENSE-MIT`](./LICENSE) or http://opensource.org/licenses/MIT).

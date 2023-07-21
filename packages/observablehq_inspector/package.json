@@ -1,0 +1,29 @@
+{
+	"name": "@wandering-app/types-observablehq_inspector",
+	"version": "0.0.0",
+	"description": "Experimental TypeScript declaration types for @observablehq/inspector",
+	"license": "MIT",
+	"author": {
+		"name": "Samantha Nguyen",
+		"email": "contact@samanthanguyen.me"
+	},
+	"keywords": [
+		"typescript",
+		"types",
+		"observablehq"
+	],
+	"main": "index.d.ts",
+	"types": "index.d.ts",
+	"homepage": "https://github.com/wandering-app/types-ohq-d3/tree/main/packages/observablehq_inspector",
+	"bugs": {
+		"url": "https://github.com/wandering-app/types-ohq-d3/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wandering-app/types-ohq-d3.git",
+		"directory": "packages/observablehq_inspector"
+	},
+	"devDependencies": {
+		"@observablehq/inspector": "^5.0.0"
+	}
+}
