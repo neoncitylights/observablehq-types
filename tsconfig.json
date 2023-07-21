@@ -1,10 +1,10 @@
 {
 	"compilerOptions": {
-		"baseUrl": "./src",
 		"esModuleInterop": true,
 		"declaration": true,
 		"forceConsistentCasingInFileNames": true,
-		"module": "commonjs",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"outDir": "dist/",
 		"skipLibCheck": true,
 		"sourceMap": true,
@@ -12,7 +12,8 @@
 		"target": "ES2022"
 	},
 	"include": [
-		"src/**/*.ts"
+		"packages/**/*.ts",
+		"packages/**/*.d.ts",
 	],
 	"exclude": [
 		"node_modules",
