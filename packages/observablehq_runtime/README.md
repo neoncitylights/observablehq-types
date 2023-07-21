@@ -6,7 +6,7 @@
 This package provides TypeScript type definitions for `@observablehq/runtime`. As these types stabilize, we intend to eventually upstream these types into DefinitelyTyped as `@types/observablehq_runtime`. 
 
 ## Install
-> **Warning**
+> **Warning**:
 > This package has not been published to the NPM registry yet. Stay tuned!
 
 ```
