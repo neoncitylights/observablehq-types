@@ -12,6 +12,7 @@
 		"types",
 		"observablehq"
 	],
+	"type": "module",
 	"main": "index.d.ts",
 	"types": "index.d.ts",
 	"homepage": "https://github.com/wandering-app/types-ohq-d3/tree/main/packages/observablehq_runtime",

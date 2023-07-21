@@ -26,6 +26,9 @@
 	"directories": {
 		"test": "tests"
 	},
+	"workspaces": [
+		"packages/**"
+	],
 	"scripts": {
 		"build:typedoc": "npx typedoc",
 		"build:typedoc-watch": "npm run build:typedoc -- --watch",
@@ -38,7 +41,7 @@
 		"test:ui": "npm run test -- --ui",
 		"test:watch": "npm run test -- --watch",
 		"test:all": "npm run test:ci && npm run lint",
-		"lint": "eslint src --ext .ts,.tsx",
+		"lint": "eslint packages --ext .ts,.tsx",
 		"lint:fix": "npm run lint -- --fix",
 		"prepublishOnly": "npm run test:all",
 		"preversion": "npm run lint",
