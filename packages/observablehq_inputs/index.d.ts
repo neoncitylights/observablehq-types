@@ -36,6 +36,8 @@ declare module '@observablehq/inputs' {
 
 	/******* HTML inputs *******/
 	export type OhqInputFormatFn<T> = (value: T, index?: number, data?: T[]) => string;
+	export type OhqInputValidateFn<T> = (value: T) => boolean;
+	export type OhqInputValidateTextFn = OhqInputValidateTextFn<string>;
 	export type OhqInputLabel = 
 		| string
 		| HTMLElement;
@@ -108,14 +110,15 @@ declare module '@observablehq/inputs' {
 	export function radio<T>(data: T, options?: OhqInputRadioOptions): HTMLFormElement;
 
 	// range.js
+	export type OhqInputRangeTransformFn = (n: number) => number;
 	export type OhqInputRangeOptions = {
 		label?: OhqInputLabel,
 		step?: number,
 		format?: OhqInputFormatFn,
 		placeholder?: string,
-		transform?: unknown,
-		invert?: unknown,
-		validate?: (n: number) => boolean,
+		transform?: OhqInputRangeTransformFn,
+		invert?: OhqInputRangeTransformFn,
+		validate?: OhqInputValidateFn<number>,
 		value?: number,
 		width?: string,
 		disabled?: boolean,
@@ -241,7 +244,7 @@ declare module '@observablehq/inputs' {
 		min?: number|string,
 		max?: number|string,
 		required?: number,
-		validate?: (input: string) => boolean,
+		validate?: OhqInputValidateTextFn,
 		submit?: boolean,
 		datalist?: unknown,
 		readonly?: boolean,
@@ -280,7 +283,7 @@ declare module '@observablehq/inputs' {
 		minlength?: number,
 		maxlength?: number,
 		required?: boolean,
-		validate?: (input: string) => boolean,
+		validate?: OhqInputValidateTextFn,
 		width?: number,
 		rows: number,
 		resize?: boolean,
@@ -298,7 +301,7 @@ declare module '@observablehq/inputs' {
 		min?: string,
 		max?: string,
 		required?: boolean,
-		validate?: (input: string) => boolean,
+		validate?: OhqInputValidateTextFn,
 		submit?: boolean,
 		readonly?: boolean,
 		disabled?: boolean,
