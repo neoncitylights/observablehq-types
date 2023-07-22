@@ -12,13 +12,20 @@ declare module '@observablehq/inputs' {
 
 	// form.js
 	export type OhqInputFormContent =
-		| HTMLFormElement[]
-		| { [key: string|number]: HTMLFormElement };
-	export type OhqInputFormOptions<T extends HTMLElement> = {
-		template: (inputs: OhqInputFormContent) => T
+		| OhqInputFormArray
+		| OhqInputFormObject;
+	export type OhqInputFormArray = HTMLFormElement[];
+	export type OhqInputFormObject = {
+		[key: string|number]: HTMLFormElement,
 	};
+
+	export type OhqInputFormOptions<T extends HTMLElement = HTMLElement, U> = {
+		template: (inputs: U) => T
+	};
+
 	export function form(content: OhqInputFormContent): HTMLDivElement;
-	export function form<T extends HTMLElement>(content: OhqInputFormContent, options: OhqInputFormOptions<T>): T;
+	export function form<T extends HTMLElement>(content: OhqInputFormArray, options: OhqInputFormOptions<T, OhqInputFormArray>): T;
+	export function form<T extends HTMLElement>(content: OhqInputFormObject, options: OhqInputFormOptions<T, OhqInputFormObject>): T;
 
 	// format.js
 	export function formatDate(value: Date): string;
@@ -39,15 +46,16 @@ declare module '@observablehq/inputs' {
 	export type OhqInputFormatFn<T> = (value: T, index?: number, data?: T[]) => string;
 	export type OhqInputValidateFn<T> = (value: T) => boolean;
 	export type OhqInputValidateTextFn = OhqInputValidateTextFn<string>;
-	export type OhqInputLabel = 
+	export type OhqInputLabel =
 		| string
 		| HTMLElement;
 
-	export type OhqInputSort =
+	export type OhqInputSort<T> =
 		| boolean
 		| 'ascending'
 		| 'descending'
-		| ((a: T, v: T) => number);
+		| OhqInputSortFn<T>;
+	export type OhqInputSortFn<T> = (a: T, v: T) => number;
 
 	export type OhqInputKeyOfFn = (value: HTMLInputElement) => string;
 	export type OhqInputValueOfFn = (value: HTMLInputElement) => string;
@@ -57,6 +65,7 @@ declare module '@observablehq/inputs' {
 	export type OhqInputButtonReduceFn<T> = (value: T) => T;
 	export type OhqInputButtonContent<T> = 
 		| string
+		| HTMLElement
 		| [OhqInputLabel, OhqInputButtonReduceFn<T>][];
 
 	export type OhqInputButtonOptions = {
@@ -68,26 +77,24 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean,
 	};
 
-	export function button<T>(content: OhqInputButtonContent<T>, options?: OhqInputButtonOptions): HTMLFormElement;
+	export function button<T>(content?: OhqInputButtonContent<T>, options?: OhqInputButtonOptions): HTMLFormElement;
 
 
 	// checkbox.js
-	export type OhqInputCheckboxContent = 
-		| string[]
-		| Map<string, string>;
-	export type OhqInputCheckboxOptions = {
+	export type OhqInputCheckboxOptions<T> = {
 		label?: OhqInputLabel,
-		sort?: OhqInputSort,
+		sort?: OhqInputSort<T>,
 		unique?: boolean,
 		locale?: string,
-		format?: OhqInputFormatFn<string>,
+		format?: OhqInputFormatFn<T>,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
 		key?: string,
 		value?: string[],
 		disabled?: boolean|string[],
 	};
-	export function checkbox(content: OhqInputCheckboxContent, options?: OhqInputCheckboxOptions): HTMLFormElement;
+	export function checkbox<T>(content: T[], options?: OhqInputCheckboxOptions<T>): HTMLFormElement;
+	export function checkbox<K, V>(content: Map<K, V>, options?: OhqInputCheckboxOptions<[K, V]>): HTMLFormElement;
 
 
 	// toggle.js
@@ -101,18 +108,19 @@ declare module '@observablehq/inputs' {
 
 
 	// radio.js
-	export type OhqInputRadioOptions = {
+	export type OhqInputRadioOptions<T> = {
 		label?: OhqInputLabel,
-		sort?: OhqInputSort,
+		sort?: OhqInputSort<T>,
 		unique?: boolean,
 		locale?: string,
-		format?: OhqInputFormatFn,
+		format?: OhqInputFormatFn<T>,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
 		value?: any,
 		disabled?: boolean|string[],
 	};
-	export function radio<T>(data: T, options?: OhqInputRadioOptions): HTMLFormElement;
+	export function radio<T>(data: T[], options?: OhqInputRadioOptions<T>): HTMLFormElement;
+	export function radio<K, V>(data: Map<K, V>, options?: OhqInputRadioOptions<[K, V]>): HTMLFormElement;
 
 
 	// range.js
@@ -120,7 +128,7 @@ declare module '@observablehq/inputs' {
 	export type OhqInputRangeOptions = {
 		label?: OhqInputLabel,
 		step?: number,
-		format?: OhqInputFormatFn,
+		format?: OhqInputFormatFn<number>,
 		placeholder?: string,
 		transform?: OhqInputRangeTransformFn,
 		invert?: OhqInputRangeTransformFn,
@@ -144,13 +152,13 @@ declare module '@observablehq/inputs' {
 
 	// search.js
 	export type OhqHtmlBoolean = boolean|'on'|'off';
-	export type OhqInputSearchOptions = {
+	export type OhqInputSearchOptions<T> = {
 		label?: OhqInputLabel,
 		query?: string|string[],
 		placeholder?: string,
 		columns: string[],
 		locale?: string,
-		format?: OhqInputFormatFn,
+		format?: OhqInputFormatFn<T>,
 		spellcheck?: boolean,
 		autocomplete?: InputAttrAutocomplete,
 		autocapitalize?: InputAttrAutocapitalize,
@@ -160,37 +168,38 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean,
 		required?: boolean,
 	};
-	export function search<T>(content: T[], options?: OhqInputSearchOptions): HTMLFormElement;
+	export function search<T>(content: T[], options?: OhqInputSearchOptions<T>): HTMLFormElement;
 
 
 	// select.js
-	export type OhqInputSelectOptions = {
+	export type OhqInputSelectOptions<T> = {
 		label?: OhqInputLabel,
 		multiple?: boolean,
 		size?: number,
-		sort?: OhqInputSort,
+		sort?: OhqInputSort<T>,
 		unique?: boolean,
 		locale?: string,
-		format?: OhqInputFormatFn,
+		format?: OhqInputFormatFn<T>,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
 		value?: string[],
 		width?: number,
 		disabled?: boolean,
 	};
-	export function select<T>(data: T[], options?: OhqInputSelectOptions): HTMLFormElement;
+	export function select<T>(data: T[], options?: OhqInputSelectOptions<T>): HTMLFormElement;
+	export function select<K, V>(data: Map<K, V>, options?: OhqInputSelectOptions<[K, V]>): HTMLFormElement;
 
 
 	// table.js
 	export type OhqTableLayout = 'auto' | 'fixed' | 'initial' | 'revert' | 'revert-layer' | 'unset';
 	export type OhqTableAlignment = 'left' | 'right' | 'center';
-	export type OhqTableOptions = {
+	export type OhqTableOptions<T> = {
 		columns?: string[],
 		value?: unknown,
 		rows?: number,
 		sort?: string|null,
 		reverse?: boolean,
-		format: { [key: string]: OhqInputFormatFn },
+		format: { [key: string]: OhqInputFormatFn<T> },
 		align?: { [key: string]: OhqTableAlignment },
 		header?: { [key: string]: string } | string | HTMLElement,
 		width?: number | { [key: string]: number },
@@ -201,7 +210,7 @@ declare module '@observablehq/inputs' {
 		required?: boolean,
 		multiple?: boolean,
 	};
-	export function table<T>(data: T[], options?: OhqTableOptions): HTMLTableElement;
+	export function table<T>(data: T[], options?: OhqTableOptions<T>): HTMLTableElement;
 
 
 	/** HTML text inputs */
@@ -210,7 +219,6 @@ declare module '@observablehq/inputs' {
 		| 'checkbox'
 		| 'color'
 		| 'date'
-		| 'datetime'
 		| 'datetime-local'
 		| 'email'
 		| 'file'
