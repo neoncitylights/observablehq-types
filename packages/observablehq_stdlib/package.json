@@ -1,0 +1,30 @@
+{
+	"name": "@wandering-app/types-observablehq_stdlib",
+	"version": "0.0.0",
+	"description": "Experimental TypeScript declaration types for @observablehq/stdlib",
+	"license": "MIT",
+	"author": {
+		"name": "Samantha Nguyen",
+		"email": "contact@samanthanguyen.me"
+	},
+	"keywords": [
+		"typescript",
+		"types",
+		"observablehq"
+	],
+	"type": "module",
+	"main": "index.d.ts",
+	"types": "index.d.ts",
+	"homepage": "https://github.com/wandering-app/types-ohq-d3/tree/main/packages/observablehq_stdlib",
+	"bugs": {
+		"url": "https://github.com/wandering-app/types-ohq-d3/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/wandering-app/types-ohq-d3.git",
+		"directory": "packages/observablehq_stdlib"
+	},
+	"devDependencies": {
+		"@observablehq/stdlib": "^5.7.7"
+	}
+}

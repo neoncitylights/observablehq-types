@@ -14,6 +14,22 @@ updates:
     labels:
       - "t-dependencies"
       - "pkg-npm"
+    groups:
+      observable:
+        patterns:
+          - "@observablehq/*"
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
+          - "eslint"
+          - "typescript"
+          - "typedoc"
+      vite:
+        patterns:
+          - "vite"
+          - "vite-plugin-*"
+          - "vitest"
+          - "@vitest/*"
     open-pull-requests-limit: 4
 
   - package-ecosystem: "github-actions"
@@ -22,7 +38,6 @@ updates:
       interval: "monthly"
     commit-message:
       prefix: "chore(deps/actions):"
-      include: "scope"
     labels:
       - "t-dependencies"
       - "pkg-gh-actions"
