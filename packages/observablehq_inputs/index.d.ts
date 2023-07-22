@@ -12,8 +12,8 @@ declare module '@observablehq/inputs' {
 
 	// form.js
 	export type OhqInputFormContent =
-		| HTMLInputElement[]
-		| { [key: string|number]: HTMLInputElement };
+		| HTMLFormElement[]
+		| { [key: string|number]: HTMLFormElement };
 	export type OhqInputFormOptions<T extends HTMLElement> = {
 		template: (inputs: OhqInputFormContent) => T
 	};
@@ -222,7 +222,7 @@ declare module '@observablehq/inputs' {
 		| 'sentences'
 		| 'words'
 		| 'characters';
-	
+
 	export type OhqInputTextOptions = {
 		label?: OhqInputLabel,
 		type?: OhqInputType,

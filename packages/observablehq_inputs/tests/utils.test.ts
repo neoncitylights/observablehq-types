@@ -1,5 +1,16 @@
-import { formatDate, formatLocaleNumber, formatTrim } from '@observablehq/inputs';
+import { form, range, formatDate, formatLocaleNumber, formatTrim } from '@observablehq/inputs';
 import { describe, expect, expectTypeOf, test } from 'vitest';
+
+describe('form()', () => {
+	test('returns a div element', () => {
+		const htmlForm = form([
+			range([0, 255], {step: 1, label: 'r'}),
+			range([0, 255], {step: 1, label: 'g'}),
+			range([0, 255], {step: 1, label: 'b'}),
+		]);
+		expectTypeOf<HTMLDivElement>(htmlForm);
+	});
+});
 
 describe('formatDate()', () => {
 	test('formats a date', () => {
