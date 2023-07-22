@@ -307,35 +307,13 @@ declare module '@observablehq/inputs' {
 	export function datetime(options?: OhqInputDateOptions): HTMLFormElement;
 }
 
-// declare module '@observablehq/inputs/array' {
-// 	export function arrayify<T>(array: Iterable<unknown>|ArrayLike<unknown>): T[];
-// 	export function iterable(array: any): boolean;
-// }
-//
-// declare module '@observablehq/inputs/event' {
-// 	export function preventDefault(event: Event): void;
-// 	export function dispatchEvent(target: EventTarget): void;
-
-// 	export type HTMLElementWithCheckableValidity =
-// 		| HTMLButtonElement
-// 		| HTMLSelectElement
-// 		| HTMLInputElement
-// 		| HTMLTextAreaElement
-// 		| HTMLFormElement
-// 		| HTMLFieldSetElement
-// 		| HTMLObjectElement;
-// 	export function checkValidity(input: HTMLElementWithCheckableValidity): boolean;
-// 	export function checkValidity(input: HTMLElement & { checkValidity(): boolean }): boolean;
-// }
-
-// declare module '@observablehq/inputs/format' {
-// 	export function stringify<T>(x: T|null): string;
-// }
-
-// declare module '@observablehq/inputs/id' {
-// 	export function newId(): `__ns__-${number}`;
-// }
-
-// declare module '@observablehq/inputs/intern' {
-// 	export function intern<T>(value: T): T|object;
-// }
+// export type HTMLElementWithCheckableValidity =
+// 	| HTMLButtonElement
+// 	| HTMLSelectElement
+// 	| HTMLInputElement
+// 	| HTMLTextAreaElement
+// 	| HTMLFormElement
+// 	| HTMLFieldSetElement
+// 	| HTMLObjectElement;
+// export function checkValidity(input: HTMLElementWithCheckableValidity): boolean;
+// export function checkValidity(input: HTMLElement & { checkValidity(): boolean }): boolean;
