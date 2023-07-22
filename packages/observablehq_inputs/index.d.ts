@@ -141,7 +141,7 @@ declare module '@observablehq/inputs' {
 		locale?: string,
 		format?: OhqInputFormatFn,
 		spellcheck?: boolean,
-		autocomplete?: OhqHtmlBoolean,
+		autocomplete?: InputAttrAutocomplete,
 		autocapitalize?: InputAttrAutocapitalize,
 		filter?: unknown,
 		width?: number|string,
@@ -191,7 +191,7 @@ declare module '@observablehq/inputs' {
 	export function table<T>(data: T[], options?: OhqTableOptions): HTMLTableElement;
 
 	/** HTML text inputs */
-	export type OhqInputType = 
+	export type InputAttrType = 
 		| 'button'
 		| 'checkbox'
 		| 'color'
@@ -216,6 +216,10 @@ declare module '@observablehq/inputs' {
 		| 'url'
 		| 'week';
 
+	export type InputAttrAutocomplete =
+		| OhqHtmlBoolean
+		| string & {}; // eslint-disable-line @typescript-eslint/ban-types
+
 	export type InputAttrAutocapitalize =
 		| OhqHtmlBoolean
 		| 'none'
@@ -225,11 +229,11 @@ declare module '@observablehq/inputs' {
 
 	export type OhqInputTextOptions = {
 		label?: OhqInputLabel,
-		type?: OhqInputType,
+		type?: InputAttrType,
 		value?: string|number|null,
 		placeholder?: string|number|null,
 		spellcheck?: boolean,
-		autocomplete?: OhqHtmlBoolean | string & {}, // eslint-disable-line @typescript-eslint/ban-types
+		autocomplete?: InputAttrAutocomplete,
 		autocapitalize?: InputAttrAutocapitalize,
 		pattern?: string,
 		minlength?: number,
@@ -271,7 +275,7 @@ declare module '@observablehq/inputs' {
 		value?: string,
 		placeholder?: string,
 		spellcheck?: boolean,
-		autocomplete?: OhqHtmlBoolean | string & {}, // eslint-disable-line @typescript-eslint/ban-types
+		autocomplete?: InputAttrAutocomplete,
 		autocapitalize?: InputAttrAutocapitalize,
 		minlength?: number,
 		maxlength?: number,
