@@ -265,6 +265,28 @@ declare module '@observablehq/inputs' {
 	export type OhqInputColorOptions = Exclude<OhqInputTextOptionsWithoutType, OhqInputColorExcludedOptions>;
 	export function color(options?: OhqInputColorOptions): HTMLFormElement;
 
+	// textarea.js
+	export type OhqInputTextareaOptions = {
+		label?: OhqInputLabel,
+		value?: string,
+		placeholder?: string,
+		spellcheck?: boolean,
+		autocomplete?: OhqHtmlBoolean | string & {}, // eslint-disable-line @typescript-eslint/ban-types
+		autocapitalize?: InputAttrAutocapitalize,
+		minlength?: number,
+		maxlength?: number,
+		required?: boolean,
+		validate?: (input: string) => boolean,
+		width?: number,
+		rows: number,
+		resize?: boolean,
+		submit?: boolean,
+		readonly?: boolean,
+		disabled?: boolean,
+		monospace?: boolean,
+	};
+	export function textarea(options?: OhqTextareaOptions): HTMLFormElement;
+
 	// date.js
 	export type OhqInputDateOptions = {
 		label?: OhqInputLabel,
