@@ -21,12 +21,11 @@ declare module '@observablehq/inputs' {
 	export function form<T extends HTMLElement>(content: OhqInputFormContent, options: OhqInputFormOptions<T>): T;
 
 	// format.js
-	export type OhqFormatFn = (value: T) => string;
 	export function formatDate(value: Date): string;
 	export function formatLocaleAuto(value: null): '';
-	export function formatLocaleAuto<T>(value: T): string;
-	export function formatLocaleNumber(value: number): string;
-	export function formatTrim<T extends object>(value: T): string;
+	export function formatLocaleAuto<T>(locale?: string): (value: T) => string;
+	export function formatLocaleNumber(locale?: string): (value: number) => string;
+	export function formatTrim<T extends { toString(): string }>(value: T): string;
 
 	// input.js
 	export type OhqInputEventTarget = EventTarget & {
@@ -36,6 +35,7 @@ declare module '@observablehq/inputs' {
 
 
 	/******* HTML inputs *******/
+	export type OhqInputFormatFn<T> = (value: T, index?: number, data?: T[]) => string;
 	export type OhqInputLabel = 
 		| string
 		| HTMLElement;
@@ -50,7 +50,11 @@ declare module '@observablehq/inputs' {
 	export type OhqInputValueOfFn = (value: HTMLInputElement) => string;
 
 	// button.js
-	export type OhqInputButtonContent = string;
+	export type OhqInputButtonReduceFn<T> = (value: T) => T;
+	export type OhqInputButtonContent<T> = 
+		| string
+		| [OhqInputLabel, OhqInputButtonReduceFn<T>][];
+
 	export type OhqInputButtonOptions = {
 		label?: OhqInputLabel,
 		required?: boolean,
@@ -59,7 +63,8 @@ declare module '@observablehq/inputs' {
 		width?: string,
 		disabled?: boolean,
 	};
-	export function button(content: OhqInputButtonContent, options?: OhqInputButtonOptions): HTMLFormElement;
+
+	export function button<T>(content: OhqInputButtonContent<T>, options?: OhqInputButtonOptions): HTMLFormElement;
 
 	// checkbox.js
 	export type OhqInputCheckboxContent = 
@@ -70,14 +75,14 @@ declare module '@observablehq/inputs' {
 		sort?: OhqInputSort,
 		unique?: boolean,
 		locale?: string,
-		format?: OhqFormatFn,
+		format?: OhqInputFormatFn<string>,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
 		key?: string,
 		value?: string[],
 		disabled?: boolean|string[],
 	};
-	export function checkbox(content: OhqInputCheckboxContent): HTMLFormElement;
+	export function checkbox(content: OhqInputCheckboxContent, options?: OhqInputCheckboxOptions): HTMLFormElement;
 
 	// toggle.js
 	export type OhqInputToggleOptions<T, U> = {
@@ -94,7 +99,7 @@ declare module '@observablehq/inputs' {
 		sort?: OhqInputSort,
 		unique?: boolean,
 		locale?: string,
-		format?: OhqFormatFn,
+		format?: OhqInputFormatFn,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
 		value?: any,
@@ -106,7 +111,7 @@ declare module '@observablehq/inputs' {
 	export type OhqInputRangeOptions = {
 		label?: OhqInputLabel,
 		step?: number,
-		format?: OhqFormatFn,
+		format?: OhqInputFormatFn,
 		placeholder?: string,
 		transform?: unknown,
 		invert?: unknown,
@@ -134,7 +139,7 @@ declare module '@observablehq/inputs' {
 		placeholder?: string,
 		columns: string[],
 		locale?: string,
-		format?: OhqFormatFn,
+		format?: OhqInputFormatFn,
 		spellcheck?: boolean,
 		autocomplete?: OhqHtmlBoolean,
 		autocapitalize?: OhqHtmlBoolean,
@@ -154,7 +159,7 @@ declare module '@observablehq/inputs' {
 		sort?: OhqInputSort,
 		unique?: boolean,
 		locale?: string,
-		format?: OhqFormatFn,
+		format?: OhqInputFormatFn,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
 		value?: string[],
@@ -172,7 +177,7 @@ declare module '@observablehq/inputs' {
 		rows?: number,
 		sort?: string|null,
 		reverse?: boolean,
-		format: { [key: string]: OhqFormatFn },
+		format: { [key: string]: OhqInputFormatFn },
 		align?: { [key: string]: OhqTableAlignment },
 		header?: { [key: string]: string } | string | HTMLElement,
 		width?: number | { [key: string]: number },
@@ -239,7 +244,7 @@ declare module '@observablehq/inputs' {
 	export function url(options?: OhqInputTextOptionsWithoutType): HTMLFormElement;
 	export function password(options?: OhqInputTextOptionsWithoutType): HTMLFormElement;
 
-
+	// color.js
 	type OhqInputColorExcludedOptions = 
 		| 'placeholder'
 		| 'pattern'
