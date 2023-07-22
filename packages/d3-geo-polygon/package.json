@@ -1,0 +1,32 @@
+{
+	"name": "@wandering-app/types-d3-geo-polygon",
+	"version": "0.0.0",
+	"description": "Experimental TypeScript declaration types for d3-geo-polygon",
+	"license": "MIT",
+	"author": {
+		"name": "Samantha Nguyen",
+		"email": "contact@samanthanguyen.me"
+	},
+	"keywords": [
+		"typescript",
+		"types",
+		"observablehq"
+	],
+	"type": "module",
+	"main": "index.d.ts",
+	"types": "index.d.ts",
+	"homepage": "https://github.com/wandering-app/types-ohq-d3/tree/main/packages/d3-geo-polygon",
+	"bugs": {
+		"url": "https://github.com/wandering-app/types-ohq-d3/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wandering-app/types-ohq-d3.git",
+		"directory": "packages/d3-geo-polygon"
+	},
+	"devDependencies": {
+		"@types/d3-geo": "^3.0.3",
+		"@types/geojson": "^7946.0.10",
+		"d3-geo": "^3.1.0"
+	}
+}
