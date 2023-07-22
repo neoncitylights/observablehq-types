@@ -142,7 +142,7 @@ declare module '@observablehq/inputs' {
 		format?: OhqInputFormatFn,
 		spellcheck?: boolean,
 		autocomplete?: OhqHtmlBoolean,
-		autocapitalize?: OhqHtmlBoolean,
+		autocapitalize?: InputAttrAutocapitalize,
 		filter?: unknown,
 		width?: number|string,
 		datalist?: Iterable<any>,
