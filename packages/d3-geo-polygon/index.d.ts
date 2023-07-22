@@ -67,7 +67,7 @@ declare module 'd3-geo-polygon' {
     export function geoAirocean(): GeoProjection;
 
     // Icosahedral (uses Voroni)
-    export function getIcosahedral(): GeoVoroniProjection;
+    export function geoIcosahedral(): GeoVoroniProjection;
 
     // Imago
     export type GeoImagoProjection = GeoProjection & {
