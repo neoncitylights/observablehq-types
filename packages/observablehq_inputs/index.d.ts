@@ -216,14 +216,21 @@ declare module '@observablehq/inputs' {
 		| 'url'
 		| 'week';
 
+	export type InputAttrAutocapitalize =
+		| OhqHtmlBoolean
+		| 'none'
+		| 'sentences'
+		| 'words'
+		| 'characters';
+	
 	export type OhqInputTextOptions = {
 		label?: OhqInputLabel,
 		type?: OhqInputType,
 		value?: string|number|null,
 		placeholder?: string|number|null,
 		spellcheck?: boolean,
-		autocomplete?: OhqHtmlBoolean,
-		autocapitalize?: OhqHtmlBoolean,
+		autocomplete?: OhqHtmlBoolean | string & {}, // eslint-disable-line @typescript-eslint/ban-types
+		autocapitalize?: InputAttrAutocapitalize,
 		pattern?: string,
 		minlength?: number,
 		maxlength?: number,
