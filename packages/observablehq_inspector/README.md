@@ -1,6 +1,6 @@
 # Types for `@observablehq/inspector`
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-![Static Badge](https://img.shields.io/badge/Tracking%20issue-%2343-%23b99aff?style=flat-square&logo=github&link=https%3A%2F%2Fgithub.com%2Fwandering-app%2Ftypes-ohq-d3%2Fissues%2F43)
+[![GitHub tracking issue](https://img.shields.io/badge/Tracking%20issue-%2343-%23b99aff?style=flat-square&logo=github)](https://github.com/wandering-app/types-ohq-d3/issues/43)
 [![npm](https://img.shields.io/npm/v/@wandering-app/types-observablehq_inspector?style=flat-square&logo=npm&logoColor=white)](https://www.npmjs.com/package/@wandering-app/types-observablehq_inspector)
 
 This package provides TypeScript type definitions for `@observablehq/inspector`. As these types stabilize, we intend to eventually upstream these types into DefinitelyTyped as `@types/observablehq_inspector`. 
