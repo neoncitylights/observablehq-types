@@ -1,8 +1,8 @@
-import { GeoProjection, GeoRawProjection, geoAzimuthalEqualAreaRaw } from 'd3-geo';
-import { MultiPolygon, Polygon } from 'geojson';
-
-// base APIs
 declare module 'd3-geo-polygon' {
+    import { GeoProjection, GeoRawProjection, geoAzimuthalEqualAreaRaw } from 'd3-geo';
+    import { MultiPolygon, Polygon } from 'geojson';
+
+    // base APIs
     export type Point2 = [number, number];
     export type Point3 = [number, number, number];
 
@@ -10,10 +10,9 @@ declare module 'd3-geo-polygon' {
 
     export type SphericalArc = [Point2, Point2];
     export function geoIntersectArcs(a: SphericalArc, b: SphericalArc): Point2|undefined;
-}
 
-// type definitions for polyhedral projections
-declare module 'd3-geo-polygon' {
+
+    // polygon projections
     export type PolyhedralFaceProjection = {
         face: Point2[],
         site: Point2,

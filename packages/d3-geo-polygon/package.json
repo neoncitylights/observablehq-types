@@ -10,7 +10,8 @@
 	"keywords": [
 		"typescript",
 		"types",
-		"observablehq"
+		"observablehq",
+		"d3-geo-polygon"
 	],
 	"type": "module",
 	"main": "index.d.ts",
