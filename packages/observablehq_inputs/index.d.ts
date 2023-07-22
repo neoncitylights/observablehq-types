@@ -264,6 +264,21 @@ declare module '@observablehq/inputs' {
 		| 'maxlength';
 	export type OhqInputColorOptions = Exclude<OhqInputTextOptionsWithoutType, OhqInputColorExcludedOptions>;
 	export function color(options?: OhqInputColorOptions): HTMLFormElement;
+
+	// date.js
+	export type OhqInputDateOptions = {
+		label?: OhqInputLabel,
+		value?: Date|string|null,
+		min?: string,
+		max?: string,
+		required?: boolean,
+		validate?: (input: string) => boolean,
+		submit?: boolean,
+		readonly?: boolean,
+		disabled?: boolean,
+	};
+	export function date(options?: OhqInputDateOptions): HTMLFormElement;
+	export function datetime(options?: OhqInputDateOptions): HTMLFormElement;
 }
 
 // declare module '@observablehq/inputs/array' {
