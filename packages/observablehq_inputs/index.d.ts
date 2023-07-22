@@ -1,5 +1,5 @@
+// utilities
 declare module '@observablehq/inputs' {
-	/******* Utilities *******/
 	// bind.js
 	export function bind(
 		target: HTMLInputElement,
@@ -32,9 +32,10 @@ declare module '@observablehq/inputs' {
 		value: T,
 	};
 	export function input<T>(value: T): OhqInputEventTarget;
+}
 
-
-	/******* HTML inputs *******/
+// HTML inputs
+declare module '@observablehq/inputs' {
 	export type OhqInputFormatFn<T> = (value: T, index?: number, data?: T[]) => string;
 	export type OhqInputValidateFn<T> = (value: T) => boolean;
 	export type OhqInputValidateTextFn = OhqInputValidateTextFn<string>;
@@ -50,6 +51,7 @@ declare module '@observablehq/inputs' {
 
 	export type OhqInputKeyOfFn = (value: HTMLInputElement) => string;
 	export type OhqInputValueOfFn = (value: HTMLInputElement) => string;
+
 
 	// button.js
 	export type OhqInputButtonReduceFn<T> = (value: T) => T;
@@ -67,6 +69,7 @@ declare module '@observablehq/inputs' {
 	};
 
 	export function button<T>(content: OhqInputButtonContent<T>, options?: OhqInputButtonOptions): HTMLFormElement;
+
 
 	// checkbox.js
 	export type OhqInputCheckboxContent = 
@@ -86,6 +89,7 @@ declare module '@observablehq/inputs' {
 	};
 	export function checkbox(content: OhqInputCheckboxContent, options?: OhqInputCheckboxOptions): HTMLFormElement;
 
+
 	// toggle.js
 	export type OhqInputToggleOptions<T, U> = {
 		label?: OhqInputLabel,
@@ -94,6 +98,7 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean,
 	};
 	export function toggle(options?: OhqInputToggleOptions): HTMLFormElement;
+
 
 	// radio.js
 	export type OhqInputRadioOptions = {
@@ -108,6 +113,7 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean|string[],
 	};
 	export function radio<T>(data: T, options?: OhqInputRadioOptions): HTMLFormElement;
+
 
 	// range.js
 	export type OhqInputRangeTransformFn = (n: number) => number;
@@ -128,11 +134,13 @@ declare module '@observablehq/inputs' {
 		options?: OhqInputRangeOptions
 	): HTMLFormElement;
 
+
 	// number.js
 	export function number(
 		content?: [number, number] = [-Infinity, Infinity],
 		options?: OhqInputRangeOptions,
 	): HTMLFormElement;
+
 
 	// search.js
 	export type OhqHtmlBoolean = boolean|'on'|'off';
@@ -154,6 +162,7 @@ declare module '@observablehq/inputs' {
 	};
 	export function search<T>(content: T[], options?: OhqInputSearchOptions): HTMLFormElement;
 
+
 	// select.js
 	export type OhqInputSelectOptions = {
 		label?: OhqInputLabel,
@@ -170,6 +179,7 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean,
 	};
 	export function select<T>(data: T[], options?: OhqInputSelectOptions): HTMLFormElement;
+
 
 	// table.js
 	export type OhqTableLayout = 'auto' | 'fixed' | 'initial' | 'revert' | 'revert-layer' | 'unset';
@@ -192,6 +202,7 @@ declare module '@observablehq/inputs' {
 		multiple?: boolean,
 	};
 	export function table<T>(data: T[], options?: OhqTableOptions): HTMLTableElement;
+
 
 	/** HTML text inputs */
 	export type InputAttrType = 
@@ -258,6 +269,7 @@ declare module '@observablehq/inputs' {
 	export function url(options?: OhqInputTextOptionsWithoutType): HTMLFormElement;
 	export function password(options?: OhqInputTextOptionsWithoutType): HTMLFormElement;
 
+
 	// color.js
 	type OhqInputColorExcludedOptions = 
 		| 'placeholder'
@@ -271,6 +283,7 @@ declare module '@observablehq/inputs' {
 		| 'maxlength';
 	export type OhqInputColorOptions = Exclude<OhqInputTextOptionsWithoutType, OhqInputColorExcludedOptions>;
 	export function color(options?: OhqInputColorOptions): HTMLFormElement;
+
 
 	// textarea.js
 	export type OhqInputTextareaOptions = {
@@ -293,6 +306,7 @@ declare module '@observablehq/inputs' {
 		monospace?: boolean,
 	};
 	export function textarea(options?: OhqTextareaOptions): HTMLFormElement;
+
 
 	// date.js
 	export type OhqInputDateOptions = {
