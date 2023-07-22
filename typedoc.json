@@ -1,8 +1,6 @@
 {
 	"entryPoints": [
-		"src/inspector.d.ts",
-		"src/runtime.d.ts",
-		"src/stdlib.d.ts"
+		"packages/**/*.d.ts",
 	],
 	"out": "docs/typedocs",
 	"lightHighlightTheme": "github-light",
