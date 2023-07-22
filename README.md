@@ -21,7 +21,7 @@ The **Status** column represents:
 | [@observablehq/graphviz](https://www.npmjs.com/package/@observablehq/graphviz)             | N/A | 🛠️ | [#30](https://github.com/wandering-app/types-ohq-d3/issues/30) |
 | [@observablehq/database-proxy](https://www.npmjs.com/package/@observablehq/database-proxy) | N/A | 🛠️ | [#29](https://github.com/wandering-app/types-ohq-d3/issues/29) |
 | [@observablehq/htl](https://www.npmjs.com/package/@observablehq/htl)                       | N/A | 🛠️ | [#31](https://github.com/wandering-app/types-ohq-d3/issues/31) |
-| [@observablehq/inputs](https://www.npmjs.com/package/@observablehq/inputs)                 | N/A | 🛠️ | [#32](https://github.com/wandering-app/types-ohq-d3/issues/32) |
+| [@observablehq/inputs](https://www.npmjs.com/package/@observablehq/inputs)                 | N/A | ⚠️ | [#32](https://github.com/wandering-app/types-ohq-d3/issues/32) |
 | [@observablehq/vega](https://www.npmjs.com/package/@observablehq/vega)                     | N/A | 🛠️ | [#33](https://github.com/wandering-app/types-ohq-d3/issues/33) |
 
 ### D3 libraries
