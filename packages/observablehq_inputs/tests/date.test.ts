@@ -8,15 +8,17 @@ describe('date()', () => {
 		expect(start.tagName).toEqual('FORM');
 	});
 
-	test('can be given a label', () => {
-		const start = date({label: 'Start'});
+	describe('with a label', () => {
+		test('as a string', () => {
+			const start = date({label: 'Start'});
 
-		expect(start.tagName).toEqual('FORM');
-		expect(start.children.item(0)).not.toBeNull();
-		expect(start.children.item(0)?.textContent).toEqual('Start');
+			expect(start.tagName).toEqual('FORM');
+			expect(start.children.item(0)).not.toBeNull();
+			expect(start.children.item(0)?.textContent).toEqual('Start');
+		});
 	});
 
-	test('can be given a value', () => {
+	test('with a value', () => {
 		const start = date({value: '2021-09-21'});
 
 		expect(start.tagName).toEqual('FORM');
@@ -37,15 +39,17 @@ describe('datetime()', () => {
 		expect(start.tagName).toEqual('FORM');
 	});
 
-	test('can be given a label', () => {
-		const start = datetime({label: 'dollars & pounds'});
+	describe('with a label', () => {
+		test('as a string', () => {
+			const start = datetime({label: 'dollars & pounds'});
 
-		expect(start.tagName).toEqual('FORM');
-		expect(start.children.item(0)).not.toBeNull();
-		expect(start.children.item(0)?.textContent).toEqual('dollars & pounds');
+			expect(start.tagName).toEqual('FORM');
+			expect(start.children.item(0)).not.toBeNull();
+			expect(start.children.item(0)?.textContent).toEqual('dollars & pounds');
+		});
 	});
 
-	test('can be given a value', () => {
+	test('with a value', () => {
 		const start = datetime({value: '2018-06-12T19:30'});
 
 		expect(start.tagName).toEqual('FORM');

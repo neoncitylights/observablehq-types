@@ -9,13 +9,13 @@ describe('button()', () => {
 		expectTypeOf<HTMLFormElement>(clickMe);
 	});
 
-	test('can be given a string', () => {
+	test('with a string', () => {
 		const clickMe = button('Click me');
 
 		expect(clickMe.textContent).toEqual('Click me');
 	});
 
-	test('can be given an HTML element', () => {
+	test('with an HTML element', () => {
 		const boldText = document.createElement('b');
 		boldText.textContent = 'WOW';
 
@@ -23,7 +23,7 @@ describe('button()', () => {
 		expect(clickMe.querySelector('b')).not.toBeNull();
 	});
 
-	describe('can be given an array of tuples', () => {
+	describe('with an array of tuples', () => {
 		test('with inferred reducer functions', () => {
 			const clickMe = button<number>([
 				['Increment', value => value + 1],
@@ -38,7 +38,7 @@ describe('button()', () => {
 		});
 	});
 
-	describe('can have a label', () => {
+	describe('with a label', () => {
 		test('as a string', () => {
 			const someButton = button('OK', {
 				label: 'dollars&pounds',
@@ -68,7 +68,7 @@ describe('button()', () => {
 		expect(someButton.children.item(0)?.hasAttribute('disabled')).toBe(true);
 	});
 
-	test('can have a width', () => {
+	test('with a width', () => {
 		const someButton = button('OK', {width: '20em'});
 		const buttonElement = someButton.children.item(0) as HTMLElement;
 		const buttonStyle = buttonElement.style;

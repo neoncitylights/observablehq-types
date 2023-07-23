@@ -16,7 +16,7 @@ describe('number()', () => {
 		expect(input?.getAttribute('name')).toBe('number');
 	});
 
-	test('can be given a range, stepping value, and default value', () => {
+	test('with a range, stepping value, and default value', () => {
 		const numInput = number([0, 100], { step: 1, value: 20});
 
 		const div = numInput.children.item(0);

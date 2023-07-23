@@ -70,102 +70,104 @@ describe('radio()', () => {
 		});
 	});
 
-	describe('can format an array of strings', () => {
-		const numInput = radio(
-			['red', 'green', 'blue'],
-			{format: x => x.toUpperCase()},
-		);
+	describe('can format', () => {
+		describe('an array of strings', () => {
+			const numInput = radio(
+				['red', 'green', 'blue'],
+				{format: x => x.toUpperCase()},
+			);
+		
+			test('returns an HTML form', () => {
+				expect(numInput.tagName).toEqual('FORM');
+			});
 	
-		test('returns an HTML form', () => {
-			expect(numInput.tagName).toEqual('FORM');
+			const div = numInput.children.item(0);
+			test('first child is a div element', () => {
+				expect(div?.tagName).toBe('DIV');
+			});
+			test('first child has 3 children', () => {
+				expect(div?.children.length).toBe(3);
+			});
+		
+			const htmlCollectArray = Array.from(div?.children as HTMLCollection);
+			test.each([
+				[htmlCollectArray[0].textContent, 'RED'],
+				[htmlCollectArray[1].textContent, 'GREEN'],
+				[htmlCollectArray[2].textContent, 'BLUE'],
+			])('values are all uppercase: %s => %s', (actual, expected) => {
+				expect(actual).toBe(expected);
+			});
 		});
 
-		const div = numInput.children.item(0);
-		test('first child is a div element', () => {
-			expect(div?.tagName).toBe('DIV');
+		describe('an array of objects', () => {
+			const sportsTeamsRadio = radio(
+				[
+					{name: 'Lakers', location: 'Los Angeles, California'},
+					{name: 'Warriors', location: 'San Francisco, California'},
+					{name: 'Celtics', location: 'Boston, Massachusetts'},
+					{name: 'Nets', location: 'New York City, New York'},
+					{name: 'Raptors', location: 'Toronto, Ontario'},
+				],
+				{
+					label: 'Favorite team',
+					format: x => x.name,
+				},
+			);
+			test('returns an HTML form', () => {
+				expect(sportsTeamsRadio.tagName).toEqual('FORM');
+			});
+		
+			const div = sportsTeamsRadio.children.item(1);
+			test('second child is a div element', () => {
+				expect(div?.tagName).toBe('DIV');
+			});
+			test('second child has 5 children', () => {
+				expect(div?.children.length).toBe(5);
+			});
+		
+			const htmlCollectArray = Array.from(div?.children as HTMLCollection);
+			test.each([
+				[htmlCollectArray[0].textContent, 'Lakers'],
+				[htmlCollectArray[1].textContent, 'Warriors'],
+				[htmlCollectArray[2].textContent, 'Celtics'],
+				[htmlCollectArray[3].textContent, 'Nets'],
+				[htmlCollectArray[4].textContent, 'Raptors'],
+			])('shows team name: %s => %s', (actual, expected) => {
+				expect(actual).toBe(expected);
+			});
 		});
-		test('first child has 3 children', () => {
-			expect(div?.children.length).toBe(3);
-		});
+
+		describe('a Map instance', () => {
+			const formMap = radio(
+				new Map([
+					['red', '#f00'],
+					['green', '#0f0'],
+					['blue', '#00f'],
+				]),
+				{
+					format: ([key, value]) => `${key} (${value})`,
+				},
+			);
+			test('returns an HTML form', () => {
+				expect(formMap.tagName).toEqual('FORM');
+			});
 	
-		const htmlCollectArray = Array.from(div?.children as HTMLCollection);
-		test.each([
-			[htmlCollectArray[0].textContent, 'RED'],
-			[htmlCollectArray[1].textContent, 'GREEN'],
-			[htmlCollectArray[2].textContent, 'BLUE'],
-		])('values are all uppercase: %s => %s', (actual, expected) => {
-			expect(actual).toBe(expected);
-		});
-	});
-
-	describe('can format an array of objects', () => {
-		const sportsTeamsRadio = radio(
-			[
-				{name: 'Lakers', location: 'Los Angeles, California'},
-				{name: 'Warriors', location: 'San Francisco, California'},
-				{name: 'Celtics', location: 'Boston, Massachusetts'},
-				{name: 'Nets', location: 'New York City, New York'},
-				{name: 'Raptors', location: 'Toronto, Ontario'},
-			],
-			{
-				label: 'Favorite team',
-				format: x => x.name,
-			},
-		);
-		test('returns an HTML form', () => {
-			expect(sportsTeamsRadio.tagName).toEqual('FORM');
-		});
+			const div = formMap.children.item(0);
+			test('second child is a div element', () => {
+				expect(div?.tagName).toBe('DIV');
+			});
+			test('second child has 5 children', () => {
+				expect(div?.children.length).toBe(3);
+			});
 	
-		const div = sportsTeamsRadio.children.item(1);
-		test('second child is a div element', () => {
-			expect(div?.tagName).toBe('DIV');
-		});
-		test('second child has 5 children', () => {
-			expect(div?.children.length).toBe(5);
-		});
-	
-		const htmlCollectArray = Array.from(div?.children as HTMLCollection);
-		test.each([
-			[htmlCollectArray[0].textContent, 'Lakers'],
-			[htmlCollectArray[1].textContent, 'Warriors'],
-			[htmlCollectArray[2].textContent, 'Celtics'],
-			[htmlCollectArray[3].textContent, 'Nets'],
-			[htmlCollectArray[4].textContent, 'Raptors'],
-		])('shows team name: %s => %s', (actual, expected) => {
-			expect(actual).toBe(expected);
-		});
-	});
-
-	describe('can format a Map instance', () => {
-		const formMap = radio(
-			new Map([
-				['red', '#f00'],
-				['green', '#0f0'],
-				['blue', '#00f'],
-			]),
-			{
-				format: ([key, value]) => `${key} (${value})`,
-			},
-		);
-		test('returns an HTML form', () => {
-			expect(formMap.tagName).toEqual('FORM');
-		});
-
-		const div = formMap.children.item(0);
-		test('second child is a div element', () => {
-			expect(div?.tagName).toBe('DIV');
-		});
-		test('second child has 5 children', () => {
-			expect(div?.children.length).toBe(3);
-		});
-
-		const htmlCollectArray = Array.from(div?.children as HTMLCollection);
-		test.each([
-			[htmlCollectArray[0].textContent, 'red (#f00)'],
-			[htmlCollectArray[1].textContent, 'green (#0f0)'],
-			[htmlCollectArray[2].textContent, 'blue (#00f)'],
-		])('shows formatted key-value pair: %s => %s', (actual, expected) => {
-			expect(actual).toBe(expected);
+			const htmlCollectArray = Array.from(div?.children as HTMLCollection);
+			test.each([
+				[htmlCollectArray[0].textContent, 'red (#f00)'],
+				[htmlCollectArray[1].textContent, 'green (#0f0)'],
+				[htmlCollectArray[2].textContent, 'blue (#00f)'],
+			])('shows formatted key-value pair: %s => %s', (actual, expected) => {
+				expect(actual).toBe(expected);
+			});
 		});
 	});
 });

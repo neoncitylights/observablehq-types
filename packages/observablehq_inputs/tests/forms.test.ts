@@ -12,8 +12,8 @@ describe('form()', () => {
 		expect(htmlForm.tagName).toEqual('DIV');
 	});
 
-	describe('can be given an array', () => {
-		test('with a template function using a for..in loop', () => {
+	describe('with an array', () => {
+		test('and template function using a for..in loop', () => {
 			const htmlForm = form<HTMLSpanElement>([
 				range([0, 255], {step: 1, label: 'r'}),
 				range([0, 255], {step: 1, label: 'g'}),
@@ -33,8 +33,8 @@ describe('form()', () => {
 		});
 	});
 
-	describe('can be given an object', () => {
-		test('with a template function calling a for...in loop', () => {
+	describe('with an object', () => {
+		test('and template function calling a for...in loop', () => {
 			const htmlForm = form({
 				r: range([0, 255], {step: 1, label: 'r'}),
 				g: range([0, 255], {step: 1, label: 'g'}),
@@ -53,7 +53,7 @@ describe('form()', () => {
 			expect(htmlForm.childElementCount).toBe(3);
 		});
 
-		test('with a template function calling Object.entries()', () => {
+		test('and template function calling Object.entries()', () => {
 			const htmlForm = form({
 				r: range([0, 255], {step: 1, label: 'r'}),
 				g: range([0, 255], {step: 1, label: 'g'}),

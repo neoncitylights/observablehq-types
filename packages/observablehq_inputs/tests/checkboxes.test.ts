@@ -16,7 +16,7 @@ describe('checkbox()', () => {
 	});
 
 	describe('with label', () => {
-		test('can be a string', () => {
+		test('as a string', () => {
 			const checkboxes = checkbox(['red', 'green', 'blue'], {label: 'dollars&pounds'});
 			const label = checkboxes.children.item(0);
 
@@ -24,7 +24,7 @@ describe('checkbox()', () => {
 			expect(label?.childNodes[0]).toEqual(document.createTextNode('dollars&pounds'));
 		});
 
-		test('can be HTML', () => {
+		test('as HTML', () => {
 			const customLabel = document.createElement('span');
 			customLabel.textContent = 'foobar';
 
@@ -71,14 +71,22 @@ describe('checkbox()', () => {
 	});
 
 	describe('can format', () => {
-		test('an array of strings', () => {
+		describe('an array of strings', () => {
 			const form = checkbox(['red', 'green', 'blue'], {
-				format: s => s.toLowerCase(),
+				format: s => s.toUpperCase(),
 			});
-			expectTypeOf<HTMLFormElement>(form);
+			const div = form.children.item(0);
+			const htmlCollectArray = Array.from(div?.children as HTMLCollection);
+			test.each([
+				[htmlCollectArray[0].textContent, 'RED'],
+				[htmlCollectArray[1].textContent, 'GREEN'],
+				[htmlCollectArray[2].textContent, 'BLUE'],
+			])('shows formatted key-value pair: %s => %s', (actual, expected) => {
+				expect(actual).toBe(expected);
+			});
 		});
 
-		test('a map of string keys and string values', () => {
+		describe('a map of string keys and string values', () => {
 			const form = checkbox(
 				new Map([
 					['red', '#f00'],
@@ -88,7 +96,16 @@ describe('checkbox()', () => {
 					format: ([key, value]) => `${key} (${value})`,
 				},
 			);
-			expectTypeOf<HTMLFormElement>(form);
+
+			const div = form.children.item(0);
+			const htmlCollectArray = Array.from(div?.children as HTMLCollection);
+			test.each([
+				[htmlCollectArray[0].textContent, 'red (#f00)'],
+				[htmlCollectArray[1].textContent, 'green (#0f0)'],
+				[htmlCollectArray[2].textContent, 'blue (#00f)'],
+			])('shows formatted key-value pair: %s => %s', (actual, expected) => {
+				expect(actual).toBe(expected);
+			});
 		});
 	});
 });
