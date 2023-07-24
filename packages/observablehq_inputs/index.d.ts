@@ -256,19 +256,44 @@ declare module '@observablehq/inputs' {
 		| 'words'
 		| 'characters';
 
-	export type OhqInputTextOptions = {
+	type InputTypeStringMinMax =
+		| 'date'
+		| 'month'
+		| 'week'
+		| 'time'
+		| 'datetime-local';
+
+	type InputTypeNumericMinMax = 
+		| 'number'
+		| 'max';
+
+	type InputTypeNoMinMax = Exclude<InputAttrType,
+		| InputTypeStringMinMax
+		| InputTypeNumericMinMax>;
+
+	export type OhqInputTextTypeOptions = {
+		type?: InputTypeNoMinMax,
+	} |
+	{
+		type?: InputTypeStringMinMax,
+		min?: string,
+		max?: string,
+	} | {
+		type?: InputTypeNumericMinMax,
+		min?: number,
+		max?: number,
+	};
+
+	export type OhqInputTextOptions = OhqInputTextTypeOptions & {
 		label?: OhqInputLabel,
-		type?: InputAttrType,
 		value?: string|number|null,
 		placeholder?: string|number|null,
 		spellcheck?: boolean,
 		autocomplete?: InputAttrAutocomplete,
 		autocapitalize?: InputAttrAutocapitalize,
 		pattern?: string,
-		minlength?: number|string,
-		maxlength?: number|string,
-		min?: number|string,
-		max?: number|string,
+		minlength?: number,
+		maxlength?: number,
 		required?: number,
 		validate?: OhqInputValidateTextFn,
 		submit?: boolean,
