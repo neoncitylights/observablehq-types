@@ -17,41 +17,13 @@ declare module '@observablehq/runtime' {
 		rejected(error: Error): void;
 	}
 
-	export namespace array {
-		export const map = Array.prototype.map;
-		export const forEach = Array.prototype.forEach;
+	export class RuntimeError<T> extends Error {
+		constructor(message: string, input?: T);
 	}
 
-	export namespace constant {
-		export function constant<T>(value: T): () => T;
-	}
-
-	export namespace errors {
-		export class RuntimeError<T> extends Error {
-			constructor(message: string, input?: T);
-		}
-	}
-
-	export namespace generatorish {
-		/* eslint-disable @typescript-eslint/ban-types */
-		export interface GeneratorLike {
-			next: Function,
-			return: Function,
-		}
-		/* eslint-enable @typescript-eslint/ban-types */
-
-		export function generatorish(value: any): value is GeneratorLike;
-	}
-
-	export namespace identity {
-		export function identity<T>(value: T): T;
-	}
-
-	export namespace noop {
-		export function noop(): void;
-	}
-
-	export namespace rethrow {
-		export function rethrow(error: Error): () => never;
-	}
+	// internal utilities
+	function constant<T>(value: T): () => T;
+	function identity<T>(value: T): T;
+	function noop(): void;
+	function rethrow(error: Error): () => never;
 }
