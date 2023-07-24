@@ -28,7 +28,33 @@ declare module '@observablehq/runtime' {
 		fileAttachments: FileAttachments;
 	};
 
-	export interface Variable {}
+	export function Variable(type: 1|2|3, module: Module, observer: Observer, options: unknown): {
+		_observer: Observer,
+		_definition: void,
+		_duplicate: undefined,
+		_duplicates: undefined,
+		_indegree: number,
+		_inputs: unknown[],
+		_invalidate: () => void,
+		_module: Module,
+		_name: string|null,
+		_outputs: Set<unknown>,
+		_promise: Promise<void>,
+		_reachable: boolean,
+		_rejector: never,
+		_shadow: unknown,
+		_type: 1|2|3,
+		_value: T,
+		_version: number,
+
+		_pending: () => void,
+		_fulfilled: <T>(value: T) => void,
+		rejected: <T extends Error>(value: T) => void,
+		resolve: (name: any) => any;
+		define: (name: any, inputs: any, definitions: any) => void,
+		delete: () => void,
+		import: (remote: string, name: string, module: Module) => void,
+	};
 
 	export interface Observer {
 		pending(): void;
