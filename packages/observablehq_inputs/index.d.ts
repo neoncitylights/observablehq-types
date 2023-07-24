@@ -362,6 +362,18 @@ declare module '@observablehq/inputs' {
 	};
 	export function date(options?: OhqInputDateOptions): HTMLFormElement;
 	export function datetime(options?: OhqInputDateOptions): HTMLFormElement;
+
+	// file.js
+	export type OhqInputFileOptions = {
+		label?: OhqInputLabel,
+		width?: string|number,
+		accept?: string,
+		capture?: string,
+		multiple?: boolean,
+		required?: boolean,
+		disabled?: boolean,
+	};
+	export function fileOf<T>(abstractFile: T): (options?: OhqInputFileOptions) => HTMLFormElement;
 }
 
 // export type HTMLElementWithCheckableValidity =
