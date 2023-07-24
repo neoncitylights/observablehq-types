@@ -154,7 +154,7 @@ declare module '@observablehq/inputs' {
 	export type OhqHtmlBoolean = boolean|'on'|'off';
 	export type OhqInputSearchOptions<T> = {
 		label?: OhqInputLabel,
-		query?: string|string[],
+		query?: string,
 		placeholder?: string,
 		columns: string[],
 		locale?: string,
@@ -162,13 +162,14 @@ declare module '@observablehq/inputs' {
 		spellcheck?: boolean,
 		autocomplete?: InputAttrAutocomplete,
 		autocapitalize?: InputAttrAutocapitalize,
-		filter?: unknown,
+		filter?: <T>(query: string) => (val: T) => boolean,
 		width?: number|string,
 		datalist?: Iterable<any>,
 		disabled?: boolean,
 		required?: boolean,
 	};
 	export function search<T>(content: T[], options?: OhqInputSearchOptions<T>): HTMLFormElement;
+	export function searchFilter<T>(query: string): (val: T) => boolean;
 
 
 	// select.js
@@ -201,7 +202,7 @@ declare module '@observablehq/inputs' {
 		reverse?: boolean,
 		format: { [key: string]: OhqInputFormatFn<T> },
 		align?: { [key: string]: OhqTableAlignment },
-		header?: { [key: string]: string } | string | HTMLElement,
+		header?: { [key: string]: string | HTMLElement },
 		width?: number | { [key: string]: number },
 		maxWidth?: number,
 		height?: number,
