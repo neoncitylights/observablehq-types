@@ -1,0 +1,30 @@
+{
+	"name": "@wandering-app/types-observablehq_inputs",
+	"version": "0.0.0",
+	"description": "Experimental TypeScript declaration types for @observablehq/inputs",
+	"license": "MIT",
+	"author": {
+		"name": "Samantha Nguyen",
+		"email": "contact@samanthanguyen.me"
+	},
+	"keywords": [
+		"typescript",
+		"types",
+		"observablehq"
+	],
+	"type": "module",
+	"main": "index.d.ts",
+	"types": "index.d.ts",
+	"homepage": "https://github.com/wandering-app/types-ohq-d3/tree/main/packages/observablehq_inputs",
+	"bugs": {
+		"url": "https://github.com/wandering-app/types-ohq-d3/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/wandering-app/types-ohq-d3.git",
+		"directory": "packages/observablehq_inputs"
+	},
+	"devDependencies": {
+		"@observablehq/inputs": "^0.10.5"
+	}
+}
