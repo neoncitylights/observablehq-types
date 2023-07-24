@@ -15,7 +15,7 @@ The **Status** column represents:
 
 | Library | `.d.ts` file | Status | Issue |
 | ------- | ------------ | ------ | ----- |
-| [@observablehq/inspector](https://www.npmjs.com/package/@observablehq/inspector)           | [`index.d.ts`](./packages/observablehq_inspector/index.d.ts) | ⚠️ | [#43](https://github.com/wandering-app/types-ohq-d3/issues/43) |
+| [@observablehq/inspector](https://www.npmjs.com/package/@observablehq/inspector)           | [`index.d.ts`](./packages/observablehq_inspector/index.d.ts) | ✅ | [#43](https://github.com/wandering-app/types-ohq-d3/issues/43) |
 | [@observablehq/runtime](https://www.npmjs.com/package/@observablehq/runtime)               | [`index.d.ts`](./packages/observablehq_runtime/index.d.ts)   | ⚠️ | [#42](https://github.com/wandering-app/types-ohq-d3/issues/42) |
 | [@observablehq/stdlib](https://www.npmjs.com/package/@observablehq/stdlib)                 | [`index.d.ts`](./packages/observablehq_stdlib/index.d.ts)    | ⚠️ | [#41](https://github.com/wandering-app/types-ohq-d3/issues/41) |
 | [@observablehq/graphviz](https://www.npmjs.com/package/@observablehq/graphviz)             | N/A | 🛠️ | [#30](https://github.com/wandering-app/types-ohq-d3/issues/30) |

@@ -50,7 +50,7 @@ declare module '@observablehq/inspector' {
 
 		/**
 		 * Returns a function that when passed a given [*variable*](https://github.com/observablehq/runtime/blob/main/README.md#variables),
-		 * returns a new [*inspector*](#inspectors) attached to a new DIV element within
+		 * returns a new {@link Inspector} attached to a new DIV element within
 		 * the specifier *container* element.
 		 * 
 		 * If *container* is a string, it represents a selector, and the *container* element
