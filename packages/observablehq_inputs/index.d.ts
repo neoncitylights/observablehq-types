@@ -173,17 +173,23 @@ declare module '@observablehq/inputs' {
 
 
 	// select.js
-	export type OhqInputSelectOptions<T> = {
+	export type OhqInputSelectMultipleOptions = {
+		multiple?: false,
+		value?: string,
+	} |
+	{
+		multiple?: true|number,
+		value?: string[],
+		size?: number
+	};
+	export type OhqInputSelectOptions<T> = OhqInputSelectMultipleOptions & {
 		label?: OhqInputLabel,
-		multiple?: boolean,
-		size?: number,
 		sort?: OhqInputSort<T>,
 		unique?: boolean,
 		locale?: string,
 		format?: OhqInputFormatFn<T>,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
-		value?: string[],
 		width?: number,
 		disabled?: boolean,
 	};
