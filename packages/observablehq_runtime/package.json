@@ -25,6 +25,8 @@
 		"directory": "packages/observablehq_runtime"
 	},
 	"devDependencies": {
-		"@observablehq/runtime": "^5.8.2"
+		"@observablehq/inspector": "^5.0.0",
+		"@observablehq/runtime": "^5.8.2",
+		"@observablehq/stdlib": "^5.7.7"
 	}
 }
