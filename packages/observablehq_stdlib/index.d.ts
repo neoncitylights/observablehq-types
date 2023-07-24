@@ -1,9 +1,29 @@
 declare module '@observablehq/stdlib' {
-	import { require, resolver } from 'd3-require';
+	import { csvParse, csvParseRows, tsvParse, tsvParseRows } from 'd3-dsv';
+	import { require, requireFrom, resolver } from 'd3-require';
 	import { KatexOptions } from 'katex';
-	export { FileAttachment, AbstractFile } from 'fileAttachments';
 
-	export namespace DOM {
+	export const Library = {
+		FileAttachment: () => NoFileAttachments,
+		Mutable: () => Mutable,
+		now: () => Generator<number, void, unknown>,
+		width: () => number,
+
+		// tagged template literals
+		html: () => html(),
+		svg: () => svg(),
+
+		// recommended libraries
+		mermaid: () => mermaid(),
+		tex: () => tex(),
+
+		DOM: DOM,
+		Files: files,
+		Generators: generators,
+		Promises: promises,
+	};
+
+	namespace DOM {
 		export function canvas(width: number, height: number): HTMLCanvasElement;
 		export function context2d(width: number, height: number, dpi?: number): HTMLCanvasElement;
 		export function download(value: () => File | Blob | MediaSource, name: string, label: string): HTMLAnchorElement;
@@ -24,7 +44,7 @@ declare module '@observablehq/stdlib' {
 		}
 	}
 
-	export namespace files {
+	namespace files {
 		export type FileReaderPromise = Promise<(
 			resolve: (resolve: FileReader['result']) => void,
 			reject: FileReader['onerror']
@@ -35,7 +55,7 @@ declare module '@observablehq/stdlib' {
 		export function url(file: Blob): FileReaderPromise;
 	}
 
-	export namespace generators {
+	namespace generators {
 		export type ObserveInitializeFn = (change: (T) => () => void) => void;
 		
 		export function disposable<T>(value: T, dispose: (T) => void): Generator<T, void, unknown>;
@@ -48,152 +68,83 @@ declare module '@observablehq/stdlib' {
 		export function worker(source: BlobPart): Generator<Worker, void, unknown>;
 	}
 
-	export namespace promises {
+	namespace promises {
 		export function delay(durationInMilliseconds: number, value: number): Promise<number>;
 		export function tick(durationInMilliseconds: number, value: number): Promise<number>;
 		export function when(time: Date, value: number): Promise<number>;
 	}
 
 	// dependency.js
-	export function dependency(name: string, version: string, main: string): (path?: string) => string;
-
-	// dependencies.js
-	export const d3: ReturnType<typeof dependency>;
-	export const inputs: ReturnType<typeof dependency>;
-	export const plot: ReturnType<typeof dependency>;
-	export const graphviz: ReturnType<typeof dependency>;
-	export const highlight: ReturnType<typeof dependency>;
-	export const katex: ReturnType<typeof dependency>;
-	export const lodash: ReturnType<typeof dependency>;
-	export const htl: ReturnType<typeof dependency>;
-	export const jszip: ReturnType<typeof dependency>;
-	export const marked: ReturnType<typeof dependency>;
-	export const sql: ReturnType<typeof dependency>;
-	export const vega: ReturnType<typeof dependency>;
-	export const vegalite: ReturnType<typeof dependency>;
-	export const vegaliteApi: ReturnType<typeof dependency>;
-	export const arrow4: ReturnType<typeof dependency>;
-	export const arrow9: ReturnType<typeof dependency>;
-	export const arrow11: ReturnType<typeof dependency>;
-	export const arquero: ReturnType<typeof dependency>;
-	export const topojson: ReturnType<typeof dependency>;
-	export const exceljs: ReturnType<typeof dependency>;
-	export const mermaid: ReturnType<typeof dependency>;
-	export const leaflet: ReturnType<typeof dependency>;
-	export const duckdb: ReturnType<typeof dependency>;
+	type DependencyPathFn = (path?: string) => string;
+	function dependency(name: string, version: string, main: string): (path?: string) => string;
 
 	// fileAttachments.js
-	function dsv(file: Blob, delimiter: string, options: { array: boolean, typed: boolean} = {array = false, typed = false}): 
-	Promise<
-		| ReturnType<typeof tsvParseRows>
-		| ReturnType<typeof tsvParse>
-		| ReturnType<typeof csvParseRows>
-		| ReturnType<typeof csvParse>
-	>;
-	function dsv(file: Blob, delimiter = '\t', { array = true }): Promise<ReturnType<typeof tsvParseRows>>;
-	function dsv(file: Blob, delimiter = '\t', { array = false }): Promise<ReturnType<typeof tsvParse>>;
-	function dsv(file: Blob, delimiter: string, { array = true }): Promise<ReturnType<typeof csvParseRows>>;
-	function dsv(file: Blob, delimiter: string, { array = false }): Promise<ReturnType<typeof csvParse>>;
+	namespace fileAttachment {
+		export type DsvOptions = {
+			array?: boolean,
+			typed?: boolean,
+		};
+	
+		export class AbstractFile {
+			constructor(name: string, mimeType: string);
+			async blob(): Promise<Blob>;
+			async arrayBuffer(): Promise<ArrayBuffer>;
+			async text(): Promise<string>;
+			async json(): Promise<any>;
+			async stream(): BodyInit | null | undefined;
+			async csv(options?: DsvOptions): ReturnType<typeof csvParseRows> | ReturnType<typeof csvParse>;
+			async tsv(options?: DsvOptions): ReturnType<typeof tsvParseRows> | ReturnType<typeof tsvParse>;
+			async image(options?: { height?: number, width?: number}): Promise<HTMLImageElement>;
+			async xml(mimeType?: DOMParserSupportedType): Promise<XMLDocument>;
+			async html(): Promise<HTMLDocument>;
+			async zip(): Promise<ZipArchive>;
+		}
 
-	export class AbstractFile {
-		constructor(name: string, mimeType: string);
-		blob(): Promise<Blob>;
-		arrayBuffer(): Promise<ArrayBuffer>;
-		text(): Promise<string>;
-		json(): Promise<any>;
-		stream(): BodyInit | null | undefined;
-		csv(options: { array: boolean, typed: boolean}): ReturnType<typeof csvParseRows> | ReturnType<typeof csvParse>;
-		tsv(options: { array: boolean, typed: boolean}): ReturnType<typeof tsvParseRows> | ReturnType<typeof tsvParse>;
-		xml(mimeType?: Parameters<DOMParser['parseFromString']>[1] = 'application/xml'): Promise<Document>;
-		html(): Promise<Document>;
+		export class FileAttachment extends AbstractFile {
+			constructor(url: URL|string, name: string, mimeType: string);
+			url(): Promise<string>;
+		}
+	
+		export function FileAttachments<T>(
+			resolve: (
+				name: string
+			) => {
+				url: URL | Promise<T>;
+				mimeType: string | undefined;
+			} | null
+		): FileAttachment;
+	
+		function NoFileAttachments(name: string): never;
+
+		export class ZipArchive {
+			filenames(): string[];
+			file(path: string): FileAttachment;
+		}
 	}
-
-	export class FileAttachment extends AbstractFile {
-		constructor(url: URL|string, name: string, mimeType: string);
-		url(): Promise<string>;
-	}
-
-	export function FileAttachments<T>(
-		resolve: (
-			name: string
-		) => {
-			url: URL | Promise<T>;
-			mimeType: string | undefined;
-		} | null
-	): FileAttachment;
-
-	export function NoFileAttachments(name: string): never;
-
-	// html.js
-	export function html(): () => HTMLTemplateElement | HTMLSpanElement;
-
-	// library.js
-	export class Library {
-		constructor(resolve: () => Promise<string>);
-		FileAttachment: FileAttachment;
-	}
-
-	// mermaid.js
-	export function mermaid(): () => Promise<() => HTMLDivElement>;
-
-	// now.js
-	export function* now(): Generator<number, void, unknown>;
 
 	// require.js
-	export function requirer(resolver: resolver): require;
+	namespace require {
+		export type RequirerValue = ReturnType<typeof requirer>;
+		function requirer(resolver: resolver|null): require|requireFrom;
+	
+		type DataSource = 'chart'|'table'|'sql';
+		export function loadDataSource(source: any, mode: DataSource, name: string);
+	
+		export function arrayIsPrimitive(value: any): boolean;
+		export function isDatabaseClient(value: any): boolean;
+	}
 
-	// runtime.js
-	export function svg(): () => SVGGElement;
+	// tagged template literals
+	function html(): () => HTMLTemplateElement | HTMLSpanElement;
+	function svg(): () => SVGGElement;
 
-	// table.js
-	export function coerceToType<T, U>(value: T, type: string): U;
-
-	/* eslint-disable @typescript-eslint/no-unused-vars */
-	export function coerceToType<T, string>(value: T, type = 'string'): string;
-	export function coerceToType<T, boolean>(value: T, type = 'boolean'): boolean;
-	export function coerceToType<T, bigint>(value: T, type = 'bigint'): bigint;
-	export function coerceToType<T, number>(value: T, type = 'integer'|'number'): number;
-	export function coerceToType<T, Date>(value: T, type = 'date'): Date;
-	export function coerceToType<T, Array>(value: T, type = 'array'): Array;
-	export function coerceToType<T, T>(value: T, type = 'object'|'value'): T;
-	export function coerceToType<T, ArrayBuffer>(value: T, type = 'buffer'): ArrayBuffer;
-	export function getTypeValidator<T>(colType: string): (value: any) => T;
-	export function getTypeValidator(colType = 'string'): (value: any) => value is string;
-	export function getTypeValidator(colType = 'boolean'): (value: any) => value is boolean;
-	export function getTypeValidator(colType = 'bigint'): (value: any) => value is bigint;
-	export function getTypeValidator(colType = 'number'): (value: any) => value is number;
-	export function getTypeValidator(colType = 'integer'): (value: any) => boolean;
-	export function getTypeValidator(colType = 'date'): (value: any) => value is Date;
-	export function getTypeValidator(colType = 'buffer'): (value: any) => value is ArrayBuffer;
-	export function getTypeValidator(colType = 'array'): (value: any) => value is Array;
-	/* eslint-enable @typescript-eslint/no-unused-vars */
-
-	export function getTypeValidator(colType = 'object'): (value: any) => value is Object; // eslint-disable-line @typescript-eslint/ban-types
-
-	export type DataSource = 'chart'|'table'|'sql';
-	export function loadDataSource(source: any, mode: DataSource, name: string);
-
-	export function arrayIsPrimitive(value: any): boolean;
-	export function isDatabaseClient(value: any): boolean;
+	// libraries
+	function mermaid(): () => Promise<() => HTMLDivElement>;
 
 	// tex.js
-	export type TexValue = Promise<
-		HTMLDivElement & {
-			options?: (options?: KatexOptions) => TexValue,
-			block: TexValue,
-		}
-	>;
-	export function tex(): () => TexValue;
-
-	// that.js
-	export function that<T>(): T;
-
-	// template.js
-	export function template<T extends Node>(
-		render: (value: string) => T,
-		wrapper: () => T
-	): () => T;
-
-	// width.js
-	export function width(): () => number;
+	type TexValue = HTMLDivElement & {
+		options?: (options?: KatexOptions) => TexValue,
+		block: TexValue,
+	};
+	function tex(require: RequirerValue): () => Promise<TexValue>;
 }

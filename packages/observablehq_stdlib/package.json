@@ -25,6 +25,10 @@
 		"directory": "packages/observablehq_stdlib"
 	},
 	"devDependencies": {
-		"@observablehq/stdlib": "^5.7.7"
+		"@observablehq/stdlib": "^5.7.7",
+		"@types/d3-dsv": "^3.0.1",
+		"@types/d3-require": "^1.2.1",
+		"@types/katex": "^0.16.1",
+		"jszip": "^3.10.1"
 	}
 }
