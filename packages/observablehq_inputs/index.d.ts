@@ -98,13 +98,13 @@ declare module '@observablehq/inputs' {
 
 
 	// toggle.js
-	export type OhqInputToggleOptions<T, U> = {
+	export type OhqInputToggleOptions<T> = {
 		label?: OhqInputLabel,
-		values?: [T, U],
-		value?: any,
+		values?: [T, T],
+		value?: boolean,
 		disabled?: boolean,
 	};
-	export function toggle(options?: OhqInputToggleOptions): HTMLFormElement;
+	export function toggle<T>(options?: OhqInputToggleOptions<T>): HTMLFormElement;
 
 
 	// radio.js
@@ -116,7 +116,7 @@ declare module '@observablehq/inputs' {
 		format?: OhqInputFormatFn<T>,
 		keyof?: OhqInputKeyOfFn,
 		valueof?: OhqInputValueOfFn,
-		value?: any,
+		value?: T|null,
 		disabled?: boolean|string[],
 	};
 	export function radio<T>(data: T[], options?: OhqInputRadioOptions<T>): HTMLFormElement;
@@ -164,7 +164,7 @@ declare module '@observablehq/inputs' {
 		autocapitalize?: InputAttrAutocapitalize,
 		filter?: <T>(query: string) => (val: T) => boolean,
 		width?: number|string,
-		datalist?: Iterable<any>,
+		datalist?: string[],
 		disabled?: boolean,
 		required?: boolean,
 	};
@@ -202,7 +202,7 @@ declare module '@observablehq/inputs' {
 	export type OhqTableAlignment = 'left' | 'right' | 'center';
 	export type OhqTableOptions<T> = {
 		columns?: string[],
-		value?: unknown,
+		value?: string[],
 		rows?: number,
 		sort?: string|null,
 		reverse?: boolean,
@@ -272,7 +272,7 @@ declare module '@observablehq/inputs' {
 		required?: number,
 		validate?: OhqInputValidateTextFn,
 		submit?: boolean,
-		datalist?: unknown,
+		datalist?: string[],
 		readonly?: boolean,
 		disabled?: boolean,
 	};
