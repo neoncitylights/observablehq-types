@@ -27,6 +27,8 @@
 	"devDependencies": {
 		"@observablehq/inspector": "^5.0.0",
 		"@observablehq/runtime": "^5.8.2",
-		"@observablehq/stdlib": "^5.7.7"
+		"@observablehq/stdlib": "^5.7.7",
+		"@wandering-app/types-observablehq_inspector": "file:../observablehq_inspector",
+		"@wandering-app/types-observablehq_stdlib": "file:../observablehq_stdlib"
 	}
 }

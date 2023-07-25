@@ -1,4 +1,9 @@
 declare module '@observablehq/runtime' {
+	import '@wandering-app/types-observablehq_inspector';
+	import '@wandering-app/types-observablehq_stdlib';
+	import '@observablehq/inspector';
+	import { FileAttachments } from '@observablehq/stdlib';
+
 	export { Inspector } from '@observablehq/inspector';
 	export { Library } from '@observablehq/stdlib';
 	import { Library } from '@observablehq/runtime';
@@ -25,7 +30,7 @@ declare module '@observablehq/runtime' {
 		_computeNow(): () => void;
 		dispose(): void;
 		module<T, U>(v1: T, v2: U): Module;
-		fileAttachments: FileAttachments;
+		fileAttachments: typeof FileAttachments;
 	};
 
 	export function Variable(type: 1|2|3, module: Module, observer: Observer, options: unknown): {

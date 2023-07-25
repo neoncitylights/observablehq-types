@@ -148,28 +148,6 @@ declare module '@observablehq/stdlib' {
 	// table.js
 	export function coerceToType<T, U>(value: T, type: string): U;
 
-	/* eslint-disable @typescript-eslint/no-unused-vars */
-	export function coerceToType<T, string>(value: T, type = 'string'): string;
-	export function coerceToType<T, boolean>(value: T, type = 'boolean'): boolean;
-	export function coerceToType<T, bigint>(value: T, type = 'bigint'): bigint;
-	export function coerceToType<T, number>(value: T, type = 'integer'|'number'): number;
-	export function coerceToType<T, Date>(value: T, type = 'date'): Date;
-	export function coerceToType<T, Array>(value: T, type = 'array'): Array;
-	export function coerceToType<T, T>(value: T, type = 'object'|'value'): T;
-	export function coerceToType<T, ArrayBuffer>(value: T, type = 'buffer'): ArrayBuffer;
-	export function getTypeValidator<T>(colType: string): (value: any) => T;
-	export function getTypeValidator(colType = 'string'): (value: any) => value is string;
-	export function getTypeValidator(colType = 'boolean'): (value: any) => value is boolean;
-	export function getTypeValidator(colType = 'bigint'): (value: any) => value is bigint;
-	export function getTypeValidator(colType = 'number'): (value: any) => value is number;
-	export function getTypeValidator(colType = 'integer'): (value: any) => boolean;
-	export function getTypeValidator(colType = 'date'): (value: any) => value is Date;
-	export function getTypeValidator(colType = 'buffer'): (value: any) => value is ArrayBuffer;
-	export function getTypeValidator(colType = 'array'): (value: any) => value is Array;
-	/* eslint-enable @typescript-eslint/no-unused-vars */
-
-	export function getTypeValidator(colType = 'object'): (value: any) => value is Object; // eslint-disable-line @typescript-eslint/ban-types
-
 	export type DataSource = 'chart'|'table'|'sql';
 	export function loadDataSource(source: any, mode: DataSource, name: string);
 
