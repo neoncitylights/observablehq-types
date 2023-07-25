@@ -1,4 +1,9 @@
 declare module '@observablehq/runtime' {
+	import '@wandering-app/types-observablehq_inspector';
+	import '@wandering-app/types-observablehq_stdlib';
+	import '@observablehq/inspector';
+	import { FileAttachments } from '@observablehq/stdlib';
+
 	export { Inspector } from '@observablehq/inspector';
 
 	export class Module {
@@ -8,7 +13,7 @@ declare module '@observablehq/runtime' {
 	export class Runtime {
 		dispose(): void;
 		module<T, U>(v1: T, v2: U): Module;
-		fileAttachments: FileAttachments;
+		fileAttachments: typeof FileAttachments;
 	}
 
 	export interface Observer {
@@ -18,8 +23,8 @@ declare module '@observablehq/runtime' {
 	}
 
 	export namespace array {
-		export const map = Array.prototype.map;
-		export const forEach = Array.prototype.forEach;
+		export const map: typeof Array.prototype.map;
+		export const forEach: typeof Array.prototype.forEach;
 	}
 
 	export namespace constant {
