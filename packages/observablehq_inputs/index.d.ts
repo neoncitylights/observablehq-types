@@ -4,7 +4,7 @@ declare module '@observablehq/inputs' {
 	export function bind(
 		target: HTMLInputElement,
 		source: HTMLInputElement,
-		invalidation = disposal(target)
+		invalidation?: typeof disposal
 	): void;
 
 	// disposal.js
@@ -19,13 +19,13 @@ declare module '@observablehq/inputs' {
 		[key: string|number]: HTMLFormElement,
 	};
 
-	export type OhqInputFormOptions<T extends HTMLElement = HTMLElement, U> = {
+	export type OhqInputFormOptions<U, T extends HTMLElement = HTMLElement> = {
 		template: (inputs: U) => T
 	};
 
 	export function form(content: OhqInputFormContent): HTMLDivElement;
-	export function form<T extends HTMLElement>(content: OhqInputFormArray, options: OhqInputFormOptions<T, OhqInputFormArray>): T;
-	export function form<T extends HTMLElement>(content: OhqInputFormObject, options: OhqInputFormOptions<T, OhqInputFormObject>): T;
+	export function form<T extends HTMLElement>(content: OhqInputFormArray, options: OhqInputFormOptions<OhqInputFormArray, T>): T;
+	export function form<T extends HTMLElement>(content: OhqInputFormObject, options: OhqInputFormOptions<OhqInputFormObject, T>): T;
 
 	// format.js
 	export function formatDate(value: Date): string;
@@ -35,17 +35,17 @@ declare module '@observablehq/inputs' {
 	export function formatTrim<T extends { toString(): string }>(value: T): string;
 
 	// input.js
-	export type OhqInputEventTarget = EventTarget & {
+	export type OhqInputEventTarget<T> = EventTarget & {
 		value: T,
 	};
-	export function input<T>(value: T): OhqInputEventTarget;
+	export function input<T>(value: T): OhqInputEventTarget<T>;
 }
 
 // HTML inputs
 declare module '@observablehq/inputs' {
 	export type OhqInputFormatFn<T> = (value: T, index?: number, data?: T[]) => string;
 	export type OhqInputValidateFn<T> = (value: T) => boolean;
-	export type OhqInputValidateTextFn = OhqInputValidateTextFn<string>;
+	export type OhqInputValidateTextFn = OhqInputValidateFn<string>;
 	export type OhqInputLabel =
 		| string
 		| HTMLElement;
@@ -138,14 +138,14 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean,
 	};
 	export function range(
-		content?: [number, number] = [0, 1],
+		content?: [number, number],
 		options?: OhqInputRangeOptions
 	): HTMLFormElement;
 
 
 	// number.js
 	export function number(
-		content?: [number, number] = [-Infinity, Infinity],
+		content?: [number, number],
 		options?: OhqInputRangeOptions,
 	): HTMLFormElement;
 
@@ -345,7 +345,7 @@ declare module '@observablehq/inputs' {
 		disabled?: boolean,
 		monospace?: boolean,
 	};
-	export function textarea(options?: OhqTextareaOptions): HTMLFormElement;
+	export function textarea(options?: OhqInputTextareaOptions): HTMLFormElement;
 
 
 	// date.js
