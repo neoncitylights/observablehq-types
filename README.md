@@ -19,7 +19,6 @@ The **Status** column represents:
 | [@observablehq/runtime](https://www.npmjs.com/package/@observablehq/runtime)               | [`index.d.ts`](./packages/observablehq_runtime/index.d.ts)   | ⚠️ | [#42](https://github.com/wandering-app/types-ohq-d3/issues/42) |
 | [@observablehq/stdlib](https://www.npmjs.com/package/@observablehq/stdlib)                 | [`index.d.ts`](./packages/observablehq_stdlib/index.d.ts)    | ⚠️ | [#41](https://github.com/wandering-app/types-ohq-d3/issues/41) |
 | [@observablehq/graphviz](https://www.npmjs.com/package/@observablehq/graphviz)             | N/A | 🛠️ | [#30](https://github.com/wandering-app/types-ohq-d3/issues/30) |
-| [@observablehq/database-proxy](https://www.npmjs.com/package/@observablehq/database-proxy) | N/A | 🛠️ | [#29](https://github.com/wandering-app/types-ohq-d3/issues/29) |
 | [@observablehq/htl](https://www.npmjs.com/package/@observablehq/htl)                       | N/A | 🛠️ | [#31](https://github.com/wandering-app/types-ohq-d3/issues/31) |
 | [@observablehq/inputs](https://www.npmjs.com/package/@observablehq/inputs)                 | [`index.d.ts`](./packages/observablehq_inputs/index.d.ts)    | ⚠️ | [#32](https://github.com/wandering-app/types-ohq-d3/issues/32) |
 | [@observablehq/vega](https://www.npmjs.com/package/@observablehq/vega)                     | N/A | 🛠️ | [#33](https://github.com/wandering-app/types-ohq-d3/issues/33) |
