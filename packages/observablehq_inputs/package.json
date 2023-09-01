@@ -25,6 +25,6 @@
 		"directory": "packages/observablehq_inputs"
 	},
 	"devDependencies": {
-		"@observablehq/inputs": "^0.10.5"
+		"@observablehq/inputs": "^0.10.6"
 	}
 }
